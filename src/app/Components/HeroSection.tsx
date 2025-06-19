@@ -4,7 +4,7 @@ import React from "react";
 function HeroSection() {
     return (
         <div>
-            <section className="bg-white dark:bg-gray-900 mt-6">
+            <section id="heroSection" className="bg-white dark:bg-gray-900 mt-6">
                 <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
                     <div className="text-center">
                         <h1 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
