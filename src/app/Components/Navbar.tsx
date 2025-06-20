@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-
+import { ModeToggle } from "./ModeToggle";
+import MobileToggle from "./MobileToggle";
 function Navbar() {
       const [menuOpen, setMenuOpen] = useState(false);
 
@@ -15,7 +16,7 @@ function Navbar() {
           >
             <Image src="/logo.png" width={50} height={50} alt="my Logo" />
             <h1 className="self-center text-2xl font-semibold whitespace-nowrap">
-              Port<span className="dark:text-red-600">Folio</span>
+              Port<span className="text-red-600 dark:text-red-600">.folio</span>
             </h1>
           </a>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -23,7 +24,7 @@ function Navbar() {
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Get started
+              Download CV
             </button>
             <button
               type="button"
@@ -89,6 +90,12 @@ function Navbar() {
                 >
                   Contact
                 </a>
+              </li>
+              <li className="hidden md:block py-2 px-3 ">
+                <ModeToggle />  
+              </li>
+              <li className="md:hidden px-3">
+                <MobileToggle/>
               </li>
             </ul>
           </div>
