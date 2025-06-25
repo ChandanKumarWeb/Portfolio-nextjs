@@ -58,16 +58,16 @@ export default function HeroSection() {
               <div className="absolute w-[70%] h-[70%] bg-[#121212] rounded-full z-10" />
 
               {/* Skill Bubbles */}
-              <div className="absolute w-12 h-12 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 left-3">
+              <div className="absolute w-14 h-14 md:w-20  md:h-20 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 left-3 md:top-16">
                 Next.js
               </div>
-              <div className="absolute w-12 h-12 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 right-3">
+              <div className="absolute w-14 h-14 md:w-20  md:h-20  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 right-3 md:top-16">
                 Tailwind
               </div>
-              <div className="absolute w-12 h-12 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 left-3">
+              <div className="absolute w-14 h-14 md:w-20  md:h-20  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 left-3 md:bottom-16">
                 Ai
               </div>
-              <div className="absolute w-12 h-12 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 right-3">
+              <div className="absolute w-14 h-14 md:w-20  md:h-20  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 right-3 md:bottom-16">
                 GitHub
               </div>
             </div>

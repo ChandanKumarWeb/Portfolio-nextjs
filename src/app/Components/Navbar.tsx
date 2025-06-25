@@ -13,7 +13,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <a href="#" className="flex items-center space-x-2">
-            <Image src="/logo.png" width={40} height={40} alt="Logo" />
+            <Image src="/Images/logo.png" width={40} height={40} alt="Logo" />
             <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
               Port<span className="text-red-600">.folio</span>
             </span>
