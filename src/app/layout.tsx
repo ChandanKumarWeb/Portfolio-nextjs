@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./Components/ThemeProvider";
 import "./globals.css";
 import { Roboto_Condensed } from 'next/font/google'
