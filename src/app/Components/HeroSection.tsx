@@ -1,47 +1,88 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-function HeroSection() {
-    const ref = useRef(null);
+import { Minus } from "lucide-react";
+
+export default function HeroSection() {
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-    return (
-        <div>
-            <section id="heroSection" className="bg-white dark:bg-black mt-16 lg:mt-16 px-2">
-                <div className="flex flex-col md:flex-row justify-around">
-                    <motion.div
-                        ref={ref}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={isInView ? { opacity: 1, scale: 1 }: {}}
-                        transition={{
-                            duration: 0.4,
-                            scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-                        }}
-                    >
-                        <h1 className="font-condensed text-red-400 text-3xl mb-0 ">Hello.</h1>
-                        <h1 className="font-condensed text-4xl text-red-200 ml-12 md:ml-18">It's Chandan Kumar</h1>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{
-                            duration: 0.4,
-                            scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-                        }}
-                    >
-                        <Image
-                            src="/Images/Freelancer.png"
-                            alt="Freelancer"
-                            width={500}
-                            height={500}
-                        />
-                    </motion.div>
-                </div>
 
-            </section>
-        </div>
-    );
+  return (
+    <section
+      id="heroSection"
+      className="bg-white dark:bg-black mt-16 md:mt-4 px-2 h-screen flex items-center"
+    >
+      <div className="flex flex-col md:flex-row justify-around items-center w-full h-full">
+        {/* Left Text Section */}
+        <motion.div
+          className="w-full md:w-2/5 px-4 p-2 order-2 md:order-1"
+          ref={ref}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{
+            duration: 0.4,
+            scale: { type: "spring", bounce: 0.5 },
+          }}
+        >
+          <div className="flex items-center text-red-400">
+            <h1 className="text-2xl">Intro</h1>
+            <Minus size={45} />
+          </div>
+          <h1 className="text-red-200 text-3xl mb-0">Hello.</h1>
+          <h1 className="text-6xl text-red-200 ml-12 md:ml-18">
+            It's Chandan Kumar
+          </h1>
+          <p className="ml-12 mt-4 md:ml-18 w-4/5 text-gray-200">
+            Front-end developer with hands-on experience in React, Next.js, and Angular.
+            Skilled in building responsive UIs using Angular Material, Bootstrap, and Tailwind CSS.
+            Proficient in API integration, dynamic data handling, permission-based UI, and report generation.
+            Passionate about clean design, modular architecture, and delivering intuitive user experiences.
+          </p>
+        </motion.div>
+
+        {/* Right Visual Section */}
+        <motion.div
+          className="w-full md:w-3/5 p-2 flex justify-center items-center order-1 md:order-2"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.4,
+            scale: { type: "spring", bounce: 0.5 },
+          }}
+        >
+          <div className="relative w-80 h-80 md:w-[750px] md:h-[750px]">
+            {/* Gradient Ring */}
+            <div className="w-full h-full rounded-full bg-gradient-to-tr from-green-400 to-emerald-400 relative flex items-center justify-center">
+              {/* Inner cutout */}
+              <div className="absolute w-[70%] h-[70%] bg-[#121212] rounded-full z-10" />
+
+              {/* Skill Bubbles */}
+              <div className="absolute w-12 h-12 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 left-3">
+                Next.js
+              </div>
+              <div className="absolute w-12 h-12 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 right-3">
+                Tailwind
+              </div>
+              <div className="absolute w-12 h-12 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 left-3">
+                Ai
+              </div>
+              <div className="absolute w-12 h-12 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 right-3">
+                GitHub
+              </div>
+            </div>
+
+            {/* Image */}
+            <Image
+              src="/Images/Freelancer.png"
+              alt="Freelancer"
+              width={500}
+              height={500}
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-48 md:w-96"
+            />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
 }
-
-export default HeroSection;

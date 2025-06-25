@@ -2,17 +2,15 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./Components/ThemeProvider";
 import "./globals.css";
+import { Roboto_Condensed } from 'next/font/google'
+
+const robotoCondensed = Roboto_Condensed({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-roboto-condensed',
+})
 
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Chandan Kumar",
@@ -27,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased cz-shortcut-listen="true"`}
+        className={`${robotoCondensed.variable} antialiased cz-shortcut-listen="true"`}
       >
         <ThemeProvider
           attribute="class" // 👈 this will manage `class="dark"` on `<html>`
