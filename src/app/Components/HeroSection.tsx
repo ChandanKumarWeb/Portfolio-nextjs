@@ -31,7 +31,7 @@ export default function HeroSection() {
           </div>
           <h1 className="text-red-200 text-3xl mb-0">Hello.</h1>
           <h1 className="text-6xl text-red-200 ml-12 md:ml-18">
-            It's Chandan Kumar
+            It&apos;s  Chandan Kumar
           </h1>
           <p className="ml-12 mt-4 md:ml-18 w-4/5 text-gray-200">
             Front-end developer with hands-on experience in React, Next.js, and Angular.
