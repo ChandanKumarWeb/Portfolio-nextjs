@@ -29,11 +29,11 @@ export default function HeroSection() {
             <h1 className="text-2xl">Intro</h1>
             <Minus size={45} />
           </div>
-          <h1 className="text-red-200 text-3xl mb-0">Hello.</h1>
-          <h1 className="text-6xl text-red-200 ml-12 md:ml-18">
+          <h1 className="text-gray-900 dark:text-red-200 text-3xl mb-0">Hello.</h1>
+          <h1 className="text-6xl text-gray-900 dark:text-red-200  ml-12 md:ml-18">
             It&apos;s  Chandan Kumar
           </h1>
-          <p className="ml-12 mt-4 md:ml-18 w-4/5 text-gray-200">
+          <p className="ml-12 mt-4 md:ml-18 w-4/5 text-gray-900 dark:text-gray-200 ">
             Front-end developer with hands-on experience in React, Next.js, and Angular.
             Skilled in building responsive UIs using Angular Material, Bootstrap, and Tailwind CSS.
             Proficient in API integration, dynamic data handling, permission-based UI, and report generation.
