@@ -51,23 +51,23 @@ export default function HeroSection() {
             scale: { type: "spring", bounce: 0.5 },
           }}
         >
-          <div className="relative w-80 h-80 md:w-[750px] md:h-[750px]">
+          <div className="relative w-80 h-80 md:w-[500px] md:h-[500px]">
             {/* Gradient Ring */}
             <div className="w-full h-full rounded-full bg-gradient-to-tr from-green-400 to-emerald-400 relative flex items-center justify-center">
               {/* Inner cutout */}
               <div className="absolute w-[70%] h-[70%] bg-[#121212] rounded-full z-10" />
 
               {/* Skill Bubbles */}
-              <div className="absolute w-14 h-14 md:w-20  md:h-20 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 left-3 md:top-16">
+              <div className="absolute w-14 h-14  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 left-3 md:top-16">
                 Next.js
               </div>
-              <div className="absolute w-14 h-14 md:w-20  md:h-20  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 right-3 md:top-16">
+              <div className="absolute w-14 h-14   bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 right-3 md:top-16">
                 Tailwind
               </div>
-              <div className="absolute w-14 h-14 md:w-20  md:h-20  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 left-3 md:bottom-16">
+              <div className="absolute w-14 h-14   bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 left-3 md:bottom-16">
                 Ai
               </div>
-              <div className="absolute w-14 h-14 md:w-20  md:h-20  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 right-3 md:bottom-16">
+              <div className="absolute w-14 h-14  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 right-3 md:bottom-16">
                 GitHub
               </div>
             </div>
