@@ -39,6 +39,11 @@ export default function HeroSection() {
             Proficient in API integration, dynamic data handling, permission-based UI, and report generation.
             Passionate about clean design, modular architecture, and delivering intuitive user experiences.
           </p>
+          <div className="ml-12 md:ml-18 mt-4">
+            <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-all duration-200">
+              Contact Me
+            </button>
+          </div>
         </motion.div>
 
         {/* Right Visual Section */}
