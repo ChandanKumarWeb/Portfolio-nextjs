@@ -30,7 +30,7 @@ export default function HeroSection() {
             <Minus size={45} />
           </div>
           <h1 className="text-gray-900 dark:text-red-200 text-3xl mb-0">Hello.</h1>
-          <h1 className="text-6xl text-gray-900 dark:text-red-200  ml-12 md:ml-18">
+          <h1 className="text-3xl md:text-6xl text-gray-900 dark:text-red-200  ml-12 md:ml-18">
             It&apos;s  Chandan Kumar
           </h1>
           <p className="ml-12 mt-4 md:ml-18 w-4/5 text-gray-900 dark:text-gray-200 ">
@@ -43,6 +43,20 @@ export default function HeroSection() {
             <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-all duration-200">
               Contact Me
             </button>
+          </div>
+          <div className="flex items-center justify-evenly mt-8">
+            <div className="flex flex-col gap-2 text-black dark:text-white">
+              <h1 className="text-3xl md:text-6xl">10+</h1>
+              <p className="text-xl md:text-3xl font-bold">Projects</p>
+            </div>
+            <div className="flex flex-col gap-2 text-black dark:text-white">
+              <h1 className="text-3xl md:text-6xl">1+</h1>
+              <p className="text-xl md:text-3xl font-bold">Experience</p>
+            </div>
+            <div className="flex flex-col gap-2 text-black dark:text-white">
+              <h1 className="text-3xl md:text-6xl">3</h1>
+              <p className="text-xl md:text-3xl font-bold">Clients</p>
+            </div>
           </div>
         </motion.div>
 

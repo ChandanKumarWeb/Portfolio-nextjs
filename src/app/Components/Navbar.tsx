@@ -12,7 +12,7 @@ export default function Navbar() {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center space-x-2">
+          <a href="#heroSection" className="flex items-center space-x-2">
             <Image src="/Images/logo.png" width={40} height={40} alt="Logo" />
             <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
               Port<span className="text-red-600">.folio</span>
@@ -21,7 +21,7 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <a href="#" className="text-blue-700 dark:text-blue-500 font-medium hover:underline">
+            <a href="#heroSection" className="text-blue-700 dark:text-blue-500 font-medium hover:underline">
               Home
             </a>
             <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
