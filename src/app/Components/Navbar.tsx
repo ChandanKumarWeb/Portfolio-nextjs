@@ -65,7 +65,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden px-4 pt-2 pb-4 space-y-2 bg-white dark:bg-gray-900 shadow-md">
-          <a href="#" className="block text-blue-600 dark:text-blue-400 font-medium">
+          <a href="#heroSection" className="block text-blue-600 dark:text-blue-400 font-medium">
             Home
           </a>
           <a href="#" className="block text-gray-700 dark:text-gray-300">

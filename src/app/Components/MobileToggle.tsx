@@ -5,14 +5,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 export default function MobileToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    if (!theme) {
-      setTheme("system");
-    }
-  }, [theme, setTheme]);
 
   useEffect(() => {
     setMounted(true);
