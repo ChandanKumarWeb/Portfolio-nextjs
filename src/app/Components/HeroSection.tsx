@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Minus } from "lucide-react";
+import { FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 
 export default function HeroSection() {
   const ref = useRef(null);
@@ -44,7 +45,7 @@ export default function HeroSection() {
               Contact Me
             </button>
           </div>
-          <div className="flex items-center justify-evenly mt-8">
+          <div className="flex items-center justify-evenly mt-4">
             <div className="flex flex-col gap-2 text-black dark:text-white">
               <h1 className="text-3xl md:text-6xl">10+</h1>
               <p className="text-xl md:text-3xl font-bold">Projects</p>
@@ -57,6 +58,42 @@ export default function HeroSection() {
               <h1 className="text-3xl md:text-6xl">3</h1>
               <p className="text-xl md:text-3xl font-bold">Clients</p>
             </div>
+          </div>
+          <div className="flex justify-evenly items-center mt-8">
+
+            <div className=" w-full flex flex-wrap justify-evenly items-center gap-6 py-4">
+              {/* Instagram */}
+              <a
+                href="https://instagram.com/iamchandankumar__"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-pink-600 transition-colors duration-300"
+              >
+                <FaInstagram className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+              </a>
+
+              {/* LinkedIn */}
+              <a
+                href="https://linkedin.com/in/chandan-d"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-blue-700 transition-colors duration-300"
+              >
+                <FaLinkedinIn className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+              </a>
+
+              {/* WhatsApp */}
+              <a
+                href="https://wa.me/8257060642"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-green-600 transition-colors duration-300"
+              >
+                <FaWhatsapp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+              </a>
+            </div>
+
+
           </div>
         </motion.div>
 
@@ -100,6 +137,7 @@ export default function HeroSection() {
               className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-48 md:w-96"
             />
           </div>
+
         </motion.div>
       </div>
     </section>
