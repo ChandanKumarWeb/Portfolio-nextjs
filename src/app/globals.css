@@ -122,3 +122,6 @@
     font-family: "Roboto Condensed", sans-serif;
   }
 }
+::-webkit-scrollbar {
+  display: none;
+}

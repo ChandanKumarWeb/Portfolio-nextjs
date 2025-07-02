@@ -12,12 +12,12 @@ export default function HeroSection() {
   return (
     <section
       id="heroSection"
-      className="bg-white dark:bg-black mt-16 md:mt-4 px-2 h-screen flex items-center"
+      className="bg-white dark:bg-black mt-16 md:mt-20 px-2 h-fit flex items-center"
     >
-      <div className="flex flex-col md:flex-row justify-around items-center w-full h-full">
+      <div className="flex flex-col md:flex-row justify-around items-center w-full h-[100vh">
         {/* Left Text Section */}
         <motion.div
-          className="w-full md:w-2/5 px-4 p-2 order-2 md:order-1"
+          className="w-full md:w-2/4 px-4 p-2 order-2 md:order-1"
           ref={ref}
           initial={{ opacity: 0, scale: 0 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -99,7 +99,7 @@ export default function HeroSection() {
 
         {/* Right Visual Section */}
         <motion.div
-          className="w-full md:w-3/5 p-2 flex justify-center items-center order-1 md:order-2"
+          className="w-full md:w-2/4 p-2 flex justify-center items-center order-1 md:order-2"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
