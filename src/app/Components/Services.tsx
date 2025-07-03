@@ -45,34 +45,50 @@ export default function Services() {
     ]
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
 
-    return (
-        <motion.section id="servicesSection" className='h-fit my-4'
-
-            ref={ref}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{
-                duration: 0.4,
-                scale: { type: "spring", bounce: 0.5 },
-            }}>
-
-            <div className="flex flex-col items-start justify-center w-full h-fit bg-white dark:bg-black px-6"
-            >
-                <div className="flex justify-start items-center text-red-400">
-                    <h1 className="text-2xl">Services</h1>
-                    <Minus size={45} />
-                </div>
-            </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 '>
-                {CardData.map((card) => (
-                    <div key={card.key} className="h-56 flex flex-col items-center justify-evenly text-center rounded-4xl bg-white dark:bg-gray-800 drop-shadow-lg dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] p-4 ">
-                        <div className="text-center w-fit bg-gray-800 dark:bg-blue-50 rounded-full  p-4">{card.icon}</div>
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mt-4">{card.title}</h2>
-                        <p> {card.description} </p>
-                    </div>
-                ))}
-            </div>
-        </motion.section>
-    )
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: "spring" as const, bounce: 0.6, duration: 0.9 } 
+  },
+};
+ return (
+  <section id="servicesSection" className='h-fit my-4'>
+    <div className="flex flex-col items-start justify-center w-full h-fit bg-white dark:bg-black px-6">
+      <div className="flex justify-start items-center text-red-400">
+        <h1 className="text-2xl">Services</h1>
+        <Minus size={45} />
+      </div>
+    </div>
+    <motion.div
+      ref={ref}
+      className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6'
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "show" : "hidden"}
+    >
+      {CardData.map((card) => (
+        <motion.div
+          key={card.key}
+          className="h-56 flex flex-col items-center justify-evenly text-center rounded-4xl bg-white dark:bg-gray-800 drop-shadow-lg dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] p-4"
+          variants={cardVariants}
+        >
+          <div className="text-center w-fit bg-gray-800 dark:bg-blue-50 rounded-full  p-4">{card.icon}</div>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mt-4">{card.title}</h2>
+          <p> {card.description} </p>
+        </motion.div>
+      ))}
+    </motion.div>
+  </section>
+);
 }
