@@ -52,19 +52,19 @@ export default function Services() {
     }
   ];
 
-  function chunkCards(cards: typeof CardData) {
-    const result: typeof CardData[] = [];
-    let i = 0;
-    while (i < cards.length) {
-      result.push(cards.slice(i, i + 2));
-      i += 2;
-      if (i < cards.length) {
-        result.push(cards.slice(i, i + 1));
-        i += 1;
-      }
-    }
-    return result;
-  }
+  // function chunkCards(cards: typeof CardData) {
+  //   const result: typeof CardData[] = [];
+  //   let i = 0;
+  //   while (i < cards.length) {
+  //     result.push(cards.slice(i, i + 2));
+  //     i += 2;
+  //     if (i < cards.length) {
+  //       result.push(cards.slice(i, i + 1));
+  //       i += 1;
+  //     }
+  //   }
+  //   return result;
+  // }
 
   // const cardRows = chunkCards(CardData);
 
