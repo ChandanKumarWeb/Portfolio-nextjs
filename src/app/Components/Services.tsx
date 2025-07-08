@@ -66,7 +66,7 @@ export default function Services() {
     return result;
   }
 
-  const cardRows = chunkCards(CardData);
+  // const cardRows = chunkCards(CardData);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
