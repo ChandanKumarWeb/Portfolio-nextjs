@@ -118,9 +118,9 @@ const ContactForm = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-2xl mx-auto bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-800"
+      className="max-w-2xl mx-auto  bg-white dark:bg-black rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-800"
     >
-      <div className="p-1 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+      <div className="p-1 bg-gradient-to-r from-gray-500 to-gray-600"></div>
       
       <div className="p-8">
         <motion.h2 
@@ -149,7 +149,7 @@ const ContactForm = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className={`pl-10 w-full px-4 py-3 rounded-lg border ${errors.name ? "border-red-500" : "border-gray-300 dark:border-gray-700"} bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                className={`pl-10 w-full px-4 py-3 rounded-lg border ${errors.name ? "border-red-500" : "border-gray-300 dark:border-gray-700"}  bg-white dark:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                 disabled={isSubmitting}
               />
             </div>
@@ -180,7 +180,7 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Your Email"
-                className={`pl-10 w-full px-4 py-3 rounded-lg border ${errors.email ? "border-red-500" : "border-gray-300 dark:border-gray-700"} bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                className={`pl-10 w-full px-4 py-3 rounded-lg border ${errors.email ? "border-red-500" : "border-gray-300 dark:border-gray-700"} bg-white dark:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                 disabled={isSubmitting}
               />
             </div>
@@ -211,7 +211,7 @@ const ContactForm = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Phone Number (Optional)"
-                className={`pl-10 w-full px-4 py-3 rounded-lg border ${errors.phone ? "border-red-500" : "border-gray-300 dark:border-gray-700"} bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                className={`pl-10 w-full px-4 py-3 rounded-lg border ${errors.phone ? "border-red-500" : "border-gray-300 dark:border-gray-700"} bg-white dark:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                 disabled={isSubmitting}
               />
             </div>
@@ -242,7 +242,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 placeholder="Your Message"
                 rows={5}
-                className={`pl-10 w-full px-4 py-3 rounded-lg border ${errors.message ? "border-red-500" : "border-gray-300 dark:border-gray-700"} bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                className={`pl-10 w-full px-4 py-3 rounded-lg border ${errors.message ? "border-red-500" : "border-gray-300 dark:border-gray-700"} bg-white dark:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
                 disabled={isSubmitting}
               ></textarea>
             </div>
