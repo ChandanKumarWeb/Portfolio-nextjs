@@ -30,7 +30,7 @@ export default function HeroSection() {
 
           <h1 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold mb-2">Hello.</h1>
           <h2 className="text-3xl md:text-6xl text-blue-600 dark:text-red-300 font-extrabold mb-4">
-            I'm Chandan Kumar
+            I&apos;m Chandan Kumar
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed mb-6">
