@@ -52,22 +52,6 @@ export default function Services() {
     }
   ];
 
-  // function chunkCards(cards: typeof CardData) {
-  //   const result: typeof CardData[] = [];
-  //   let i = 0;
-  //   while (i < cards.length) {
-  //     result.push(cards.slice(i, i + 2));
-  //     i += 2;
-  //     if (i < cards.length) {
-  //       result.push(cards.slice(i, i + 1));
-  //       i += 1;
-  //     }
-  //   }
-  //   return result;
-  // }
-
-  // const cardRows = chunkCards(CardData);
-
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -91,42 +75,51 @@ export default function Services() {
   };
 
   return (
-    <section id="servicesSection" className="py-16 px-6 bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-start items-center text-red-400 mb-10">
-          <h1 className="text-3xl font-bold">Services</h1>
-          <Minus size={45} />
-        </div>
+   <section
+  id="servicesSection"
+  className="py-16 px-6 text-white 
+             bg-gradient-to-b from-blue-100 to-blue-300 
+             dark:from-[#0f172a] dark:to-[#1e293b]"
+>
+  <div className="max-w-7xl mx-auto">
+    <div className="flex justify-start items-center text-red-400 mb-10">
+      <h1 className="text-3xl font-bold">Services</h1>
+      <Minus size={45} />
+    </div>
 
+    <motion.div
+      ref={ref}
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "show" : "hidden"}
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+    >
+      {CardData.map((card) => (
         <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+          key={card.key}
+          variants={cardVariants}
+          className="flex flex-col items-center text-center bg-white dark:bg-gray-800 rounded-4xl p-6 shadow-xl dark:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:dark:shadow-[0_0_30px_rgba(255,255,255,0.3)] cursor-pointer"
         >
-          {CardData.map((card) => (
-            <motion.div
-              key={card.key}
-              variants={cardVariants}
-              className="flex flex-col items-center text-center bg-white dark:bg-gray-800 rounded-4xl p-6 shadow-xl dark:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:dark:shadow-[0_0_30px_rgba(255,255,255,0.3)] cursor-pointer"
-            >
-
-              <Image
-                src={card.image}
-                alt={card.title}
-                width={140}
-                height={140}
-                className="mb-4"
-              />
-              <div className="mb-2">{card.icon}</div>
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{card.title}</h2>
-              <p className="mt-2 text-gray-700 dark:text-gray-300">{card.description}</p>
-            </motion.div>
-          ))}
+          <Image
+            src={card.image}
+            alt={card.title}
+            width={140}
+            height={140}
+            className="mb-4"
+          />
+          <div className="mb-2">{card.icon}</div>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            {card.title}
+          </h2>
+          <p className="mt-2 text-gray-700 dark:text-gray-300">
+            {card.description}
+          </p>
         </motion.div>
-      </div>
-    </section>
+      ))}
+    </motion.div>
+  </div>
+</section>
+
 
   );
 }

@@ -7,6 +7,14 @@ import MobileToggle from "./MobileToggle";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navLinks = [
+    { label: "Home", href: "#heroSection", isPrimary: true },
+    { label: "Services", href: "#servicesSection" },
+    { label: "Projects", href: "#projectsSection" },
+    { label: "Testimonials", href: "#testimonialsSection" },
+    { label: "Contact", href: "#contactSection" },
+  ];
+
   return (
     <header className="bg-white dark:bg-black fixed w-full z-30 top-0 border-b border-gray-200 dark:border-gray-700 shadow-sm">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,18 +29,19 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <a href="#heroSection" className="text-blue-700 dark:text-blue-500 font-medium hover:underline">
-              Home
-            </a>
-            <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-              About
-            </a>
-            <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-              Services
-            </a>
-            <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-              Contact
-            </a>
+            {navLinks.map(({ label, href, isPrimary }) => (
+              <a
+                key={label}
+                href={href}
+                className={`${
+                  isPrimary
+                    ? "text-blue-700 dark:text-blue-500 font-medium hover:underline"
+                    : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                }`}
+              >
+                {label}
+              </a>
+            ))}
             <ModeToggle />
           </div>
 
@@ -55,7 +64,12 @@ export default function Navbar() {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </button>
           </div>
@@ -65,18 +79,19 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden px-4 pt-2 pb-4 space-y-2 bg-white dark:bg-gray-900 shadow-md">
-          <a href="#heroSection" className="block text-blue-600 dark:text-blue-400 font-medium">
-            Home
-          </a>
-          <a href="#" className="block text-gray-700 dark:text-gray-300">
-            About
-          </a>
-          <a href="#" className="block text-gray-700 dark:text-gray-300">
-            Services
-          </a>
-          <a href="#" className="block text-gray-700 dark:text-gray-300">
-            Contact
-          </a>
+          {navLinks.map(({ label, href, isPrimary }) => (
+            <a
+              key={label}
+              href={href}
+              className={`block ${
+                isPrimary
+                  ? "text-blue-600 dark:text-blue-400 font-medium"
+                  : "text-gray-700 dark:text-gray-300"
+              }`}
+            >
+              {label}
+            </a>
+          ))}
           <MobileToggle />
         </div>
       )}

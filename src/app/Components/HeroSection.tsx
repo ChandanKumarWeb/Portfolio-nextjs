@@ -12,134 +12,123 @@ export default function HeroSection() {
   return (
     <section
       id="heroSection"
-      className="bg-white dark:bg-black mt-16 md:mt-20 px-2 h-fit flex items-center"
+      className="bg-white dark:bg-[#0b0b0b] mt-16 md:mt-20 px-4 py-10 md:py-20 h-fit flex items-center"
     >
-      <div className="flex flex-col md:flex-row justify-around items-center w-full h-[100vh">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center w-full max-w-7xl mx-auto gap-10">
         {/* Left Text Section */}
         <motion.div
-          className="w-full md:w-2/4 px-4 p-2 order-2 md:order-1"
+          className="w-full md:w-1/2 px-4 order-2 md:order-1"
           ref={ref}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{
-            duration: 0.4,
-            scale: { type: "spring", bounce: 0.5 },
-          }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <div className="flex items-center text-red-400">
-            <h1 className="text-2xl">Intro</h1>
+          <div className="flex items-center text-red-500 mb-4">
+            <h1 className="text-2xl font-semibold">Intro</h1>
             <Minus size={45} />
           </div>
-          <h1 className="text-gray-900 dark:text-red-200 text-3xl mb-0">Hello.</h1>
-          <h1 className="text-3xl md:text-6xl text-gray-900 dark:text-red-200  ml-12 md:ml-18">
-            It&apos;s  Chandan Kumar
-          </h1>
-          <p className="ml-12 mt-4 md:ml-18 w-4/5 text-gray-900 dark:text-gray-200 ">
-            Front-end developer with hands-on experience in React, Next.js, and Angular.
-            Skilled in building responsive UIs using Angular Material, Bootstrap, and Tailwind CSS.
-            Proficient in API integration, dynamic data handling, permission-based UI, and report generation.
-            Passionate about clean design, modular architecture, and delivering intuitive user experiences.
+
+          <h1 className="text-gray-900 dark:text-white text-3xl md:text-4xl font-bold mb-2">Hello.</h1>
+          <h2 className="text-3xl md:text-6xl text-blue-600 dark:text-red-300 font-extrabold mb-4">
+            I'm Chandan Kumar
+          </h2>
+
+          <p className="text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+            Front-end developer with expertise in React, Next.js, and Angular. I build responsive UIs using Angular Material, Bootstrap, and Tailwind CSS. Skilled in API integration, dynamic data handling, permission-based UI, and report generation. Passionate about clean design and intuitive UX.
           </p>
-          <div className="ml-12 md:ml-18 mt-4">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-all duration-200">
-              Contact Me
-            </button>
+
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-300 text-sm">
+            Contact Me
+          </button>
+
+          {/* Stats */}
+          <div className="flex flex-wrap gap-6 mt-8 text-center">
+            {[
+              { number: "10+", label: "Projects" },
+              { number: "1+", label: "Years Exp" },
+              { number: "3", label: "Clients" },
+            ].map(({ number, label }, i) => (
+              <div key={i} className="text-black dark:text-white">
+                <h3 className="text-4xl md:text-5xl font-bold">{number}</h3>
+                <p className="text-lg md:text-xl font-medium">{label}</p>
+              </div>
+            ))}
           </div>
-          <div className="flex items-center justify-evenly mt-4">
-            <div className="flex flex-col gap-2 text-black dark:text-white">
-              <h1 className="text-3xl md:text-6xl">10+</h1>
-              <p className="text-xl md:text-3xl font-bold">Projects</p>
-            </div>
-            <div className="flex flex-col gap-2 text-black dark:text-white">
-              <h1 className="text-3xl md:text-6xl">1+</h1>
-              <p className="text-xl md:text-3xl font-bold">Experience</p>
-            </div>
-            <div className="flex flex-col gap-2 text-black dark:text-white">
-              <h1 className="text-3xl md:text-6xl">3</h1>
-              <p className="text-xl md:text-3xl font-bold">Clients</p>
-            </div>
-          </div>
-          <div className="flex justify-evenly items-center mt-8">
 
-            <div className=" w-full flex flex-wrap justify-evenly items-center gap-6 py-4">
-              {/* Instagram */}
-              <a
-                href="https://instagram.com/iamchandankumar__"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:text-pink-600 transition-colors duration-300"
-              >
-                <FaInstagram className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10" />
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href="https://linkedin.com/in/chandan-d"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:text-blue-700 transition-colors duration-300"
-              >
-                <FaLinkedinIn className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10" />
-              </a>
-
-              {/* WhatsApp */}
-              <a
-                href="https://wa.me/8257060642"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:text-green-600 transition-colors duration-300"
-              >
-                <FaWhatsapp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10" />
-              </a>
-            </div>
-
-
+          {/* Social Icons */}
+          <div className="flex gap-6 mt-8">
+            <a href="https://instagram.com/iamchandankumar__" target="_blank" className="hover:text-pink-500 text-gray-700 dark:text-white">
+              <FaInstagram className="w-7 h-7" />
+            </a>
+            <a href="https://linkedin.com/in/chandan-d" target="_blank" className="hover:text-blue-600 text-gray-700 dark:text-white">
+              <FaLinkedinIn className="w-7 h-7" />
+            </a>
+            <a href="https://wa.me/8257060642" target="_blank" className="hover:text-green-500 text-gray-700 dark:text-white">
+              <FaWhatsapp className="w-7 h-7" />
+            </a>
           </div>
         </motion.div>
 
-        {/* Right Visual Section */}
+        {/* Right Image Section */}
         <motion.div
-          className="w-full md:w-2/4 p-2 flex justify-center items-center order-1 md:order-2"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.4,
-            scale: { type: "spring", bounce: 0.5 },
-          }}
+          className="w-full md:w-1/2 order-1 md:order-2 flex justify-center items-center"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <div className="relative w-80 h-80 md:w-[500px] md:h-[500px]">
-            {/* Gradient Ring */}
-            <div className="w-full h-full rounded-full bg-gradient-to-tr from-green-400 to-emerald-400 relative flex items-center justify-center">
-              {/* Inner cutout */}
+          <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] animate-glowRing">
+            {/* Glowing Gradient Ring */}
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-green-400 via-emerald-500 to-teal-400 relative flex items-center justify-center shadow-xl animate-pulse-slow">
+              {/* Inner Dark Circle */}
               <div className="absolute w-[70%] h-[70%] bg-[#121212] rounded-full z-10" />
 
-              {/* Skill Bubbles */}
-              <div className="absolute w-14 h-14  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 left-3 md:top-16">
-                Next.js
-              </div>
-              <div className="absolute w-14 h-14   bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 top-3 right-3 md:top-16">
-                Tailwind
-              </div>
-              <div className="absolute w-14 h-14   bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 left-3 md:bottom-16">
-                Ai
-              </div>
-              <div className="absolute w-14 h-14  bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center font-semibold z-20 bottom-3 right-3 md:bottom-16">
-                GitHub
-              </div>
+              {/* Floating Skill Bubbles */}
+              {[
+                { label: "Next.js", pos: "top-4 left-4 md:top-14 md:left-10", delay: 0 },
+                { label: "Tailwind", pos: "top-4 right-4 md:top-14 md:right-10", delay: 0.2 },
+                { label: "AI", pos: "bottom-4 left-4 md:bottom-14 md:left-10", delay: 0.4 },
+                { label: "GitHub", pos: "bottom-4 right-4 md:bottom-14 md:right-10", delay: 0.6 },
+              ].map(({ label, pos, delay }, i) => (
+                <motion.div
+                  key={i}
+                  className={`absolute ${pos} w-14 h-14 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center text-sm font-semibold z-20 shadow-lg`}
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    delay,
+                  }}
+                >
+                  {label}
+                </motion.div>
+              ))}
             </div>
 
-            {/* Image */}
-            <Image
-              src="/Images/Freelancer.png"
-              alt="Freelancer"
-              width={500}
-              height={500}
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-48 md:w-96"
-            />
+            {/* Floating Freelancer Image */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 w-48 md:w-80"
+            >
+              <Image
+                src="/Images/Freelancer.png"
+                alt="Freelancer"
+                width={500}
+                height={500}
+                className="rounded-full drop-shadow-lg"
+              />
+            </motion.div>
           </div>
-
         </motion.div>
+
       </div>
     </section>
+
   );
 }
