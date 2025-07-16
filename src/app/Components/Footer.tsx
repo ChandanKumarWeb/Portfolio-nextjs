@@ -30,7 +30,7 @@ export default function Footer() {
     },
     {
       icon: <FaGithub className="w-5 h-5" />,
-      href: "https://github.com/yourusername",
+      href: "https://github.com/ChandanKumarWeb",
       color: "hover:text-gray-800 dark:hover:text-white",
       bg: "hover:bg-gray-500/10 dark:hover:bg-gray-400/10",
       tooltip: "GitHub"

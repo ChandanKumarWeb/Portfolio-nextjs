@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Minus } from "lucide-react";
-import { FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaLinkedinIn, FaWhatsapp, FaGithub } from "react-icons/fa";
 
 export default function HeroSection() {
   const ref = useRef(null);
@@ -119,28 +119,21 @@ export default function HeroSection() {
 
           {/* Social Icons */}
           <div className="flex gap-6 mt-8">
-            <a
-              href="https://instagram.com/iamchandankumar__"
-              target="_blank"
-              className="hover:text-pink-500 text-gray-700 dark:text-white"
-            >
-              <FaInstagram className="w-7 h-7" />
+            <a href="https://instagram.com/iamchandankumar__" target="_blank" rel="noopener noreferrer">
+              <FaInstagram className="w-7 h-7 text-gray-700 dark:text-white hover:!text-pink-500 transition-colors duration-300" />
             </a>
-            <a
-              href="https://linkedin.com/in/chandan-d"
-              target="_blank"
-              className="hover:text-blue-600 text-gray-700 dark:text-white"
-            >
-              <FaLinkedinIn className="w-7 h-7" />
+            <a href="https://linkedin.com/in/chandan-d" target="_blank" rel="noopener noreferrer">
+              <FaLinkedinIn className="w-7 h-7 text-gray-700 dark:text-white hover:!text-blue-600 transition-colors duration-300" />
             </a>
-            <a
-              href="https://wa.me/8257060642"
-              target="_blank"
-              className="hover:text-green-500 text-gray-700 dark:text-white"
-            >
-              <FaWhatsapp className="w-7 h-7" />
+            <a href="https://wa.me/8257060642" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp className="w-7 h-7 text-gray-700 dark:text-white hover:!text-green-500 transition-colors duration-300" />
+            </a>
+            <a href="https://github.com/ChandanKumarWeb" target="_blank" rel="noopener noreferrer">
+              <FaGithub className="w-7 h-7 text-gray-700 dark:text-white hover:!text-black dark:hover:!text-gray-400 transition-colors duration-300" />
             </a>
           </div>
+
+
         </motion.div>
       </div>
     </section>
