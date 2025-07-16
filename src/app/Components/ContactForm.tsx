@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, User, MessageSquare, Phone, Send } from "lucide-react";
 import { toast } from "react-hot-toast";
-import Image from "next/image";
 
 type FormField = "name" | "email" | "phone" | "message";
 
