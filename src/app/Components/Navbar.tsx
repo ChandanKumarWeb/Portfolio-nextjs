@@ -11,7 +11,8 @@ export default function Navbar() {
     { label: "Home", href: "#heroSection", isPrimary: true },
     { label: "Services", href: "#servicesSection" },
     { label: "Projects", href: "#projectsSection" },
-    { label: "Testimonials", href: "#testimonialsSection" },
+    { label: "Skills", href: "#skillsSection" },
+    { label: "Testimonials", href: "#testimonials" },
     { label: "Contact", href: "#contactSection" },
   ];
 
