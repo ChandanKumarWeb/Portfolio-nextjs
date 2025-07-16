@@ -13,7 +13,7 @@ export default function HeroSection() {
   return (
     <section
       id="heroSection"
-      className="bg-white dark:bg-[#0b0b0b] mt-16 md:mt-4 px-4 py-10 md:py-20 h-fit flex items-center"
+      className="bg-white dark:bg-black mt-16 md:mt-4 px-4 py-10 md:py-20 h-fit flex items-center"
     >
       <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-7xl mx-auto gap-10">
         {/* Image section - comes first in mobile */}
