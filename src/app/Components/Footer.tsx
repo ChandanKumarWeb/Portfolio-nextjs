@@ -39,7 +39,7 @@ export default function Footer() {
 
   const quickLinks = [
     { name: "Home", href: "#heroSection" },
-    { name: "Services", href: "#servicesSection" },
+    { name: "Services", href: "#sercentervicesSection" },
     { name: "Projects", href: "#projectsSection" },
     { name: "Skills", href: "#skillsSection" },
     { name: "Testimonials", href: "#testimonialsSection" },
@@ -161,7 +161,7 @@ export default function Footer() {
           >
             <h4 className="text-lg font-semibold mb-3">Let&apos;s collaborate</h4>
             <p className="text-sm mb-4 text-gray-600 dark:text-gray-400">
-              Have a project in mind? Let's discuss how I can help bring your ideas to life.
+              Have a project in mind? Let&apos;s discuss how I can help bring your ideas to life.
             </p>
             <motion.a
               href="mailto:chandan42kumar55@gmail.com"

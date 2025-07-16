@@ -39,7 +39,7 @@ export default function Testimonial() {
         >
             <div className="max-w-6xl mx-auto text-center">
                 {/* Section Header */}
-                <div className="flex justify-center items-center text-red-500 mb-12">
+                <div className="flex justify-start items-center text-red-500 mb-12">
                     <h2 className="text-3xl font-bold">Testimonials</h2>
                     <Minus size={45} />
                 </div>

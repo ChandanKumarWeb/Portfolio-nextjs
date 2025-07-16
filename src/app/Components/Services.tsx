@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { Minus, Sparkles } from "lucide-react";
+import { Minus } from "lucide-react";
 import { Code2, Paintbrush, Cloud, Zap, Wrench, Bug } from "lucide-react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -102,18 +102,18 @@ export default function Services() {
     }
   };
 
-  const titleVariants: Variants = {
-    hidden: { opacity: 0, x: -30 },
-    show: { 
-      opacity: 1, 
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10
-      }
-    }
-  };
+  // const titleVariants: Variants = {
+  //   hidden: { opacity: 0, x: -30 },
+  //   show: { 
+  //     opacity: 1, 
+  //     x: 0,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 100,
+  //       damping: 10
+  //     }
+  //   }
+  // };
 
   return (
     <section
