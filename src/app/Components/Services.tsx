@@ -129,7 +129,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto relative">
         {/* Heading with animation */}
         <div className="flex justify-start items-center text-red-500 mb-10">
-          <h1 className="text-3xl font-bold">Projects</h1>
+          <h1 className="text-3xl font-bold">Services</h1>
           <Minus size={45} />
         </div>
 
@@ -183,7 +183,7 @@ export default function Services() {
                   
                   {/* Learn more link */}
                   <div className="mt-auto pt-4">
-                    <span className={`text-sm font-medium ${card.hoverColor} bg-gradient-to-br ${card.color} bg-clip-text text-transparent`}>
+                    <span className={`text-sm font-medium ${card.hoverColor} bg-gradient-to-br ${card.color} bg-clip-text text-transparent cursor-pointer`}>
                       Learn more →
                     </span>
                   </div>

@@ -14,24 +14,31 @@ import {
   SiNextdotjs,
   SiPostman,
   SiOpenai,
+  SiFramer
 } from "react-icons/si";
 
 const skills = [
-  {
-    name: "React",
-    icon: <FaReact className="text-sky-500 w-6 h-6" />,
-    description: "Built dynamic SPAs using hooks, state, and router.",
-  },
   {
     name: "Next.js",
     icon: <SiNextdotjs className="text-white w-6 h-6" />,
     description: "Implemented SSR, routing, SEO and APIs with ease.",
   },
   {
+    name: "React",
+    icon: <FaReact className="text-sky-500 w-6 h-6" />,
+    description: "Built dynamic SPAs using hooks, state, and router.",
+  },
+  {
     name: "Angular",
     icon: <FaAngular className="text-red-500 w-6 h-6" />,
     description: "Form-heavy enterprise UIs using Angular and RxJS.",
   },
+   {
+    name: "Framer Motion",
+    icon: <SiFramer className="text-pink-400 w-6 h-6" />,
+    description: "Framer Motion adds smooth, declarative animations to React components easily.",
+  },
+
   {
     name: "JavaScript",
     icon: <FaJs className="text-yellow-400 w-6 h-6" />,
@@ -39,7 +46,7 @@ const skills = [
   },
   {
     name: "Tailwind CSS",
-    icon: <SiTailwindcss className="text-teal-400 w-6 h-6" />,
+    icon: <SiTailwindcss className="text-blue-500 w-6 h-6" />,
     description: "Responsive UI with utility-first Tailwind workflows.",
   },
   {
