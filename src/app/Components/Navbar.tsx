@@ -84,6 +84,7 @@ export default function Navbar() {
             <a
               key={label}
               href={href}
+              onClick={() => setMenuOpen(false)} 
               className={`block ${
                 isPrimary
                   ? "text-blue-600 dark:text-blue-400 font-medium"

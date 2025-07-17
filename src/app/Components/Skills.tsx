@@ -73,7 +73,7 @@ const skills = [
 
 export default function SkillsSection() {
   return (
-    <section id="skillsSection" className="py-20 px-4 bg-[#F9EBFA] dark:bg-[#0b0b0b] overflow-hidden">
+    <section id="skillsSection" className="py-20 px-4 bg-[#f8f6f8]  dark:bg-[#0b0b0b] overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
         <div className="flex items-center text-red-500 mb-12">

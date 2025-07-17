@@ -118,7 +118,7 @@ export default function Services() {
   return (
     <section
       id="servicesSection"
-      className="py-16 px-4 bg-[#F9EBFA] dark:bg-[#0b0b0b]  text-gray-900 dark:text-white relative overflow-hidden"
+      className="py-16 px-4 bg-[#f8f6f8]  dark:bg-[#0b0b0b]  text-gray-900 dark:text-white relative overflow-hidden"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">

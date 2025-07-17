@@ -121,7 +121,7 @@ const ContactForm = () => {
   return (
     <section
       id="contactSection"
-      className="py-16 px-4 bg-[#F9EBFA] dark:bg-[#0b0b0b]  text-gray-900 dark:text-white relative overflow-hidden"
+      className="py-16 px-4 bg-[#f8f6f8]  dark:bg-[#0b0b0b]  text-gray-900 dark:text-white relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-start items-center text-red-500 mb-10">
