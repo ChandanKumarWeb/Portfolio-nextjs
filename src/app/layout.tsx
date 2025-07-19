@@ -3,6 +3,7 @@ import { ThemeProvider } from "./Components/ThemeProvider";
 import "./globals.css";
 import { Roboto_Condensed } from 'next/font/google'
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
+import { Toaster } from "react-hot-toast";
 
 const robotoCondensed = Roboto_Condensed({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster position="bottom-center" />
           <ScrollToTopButton/>
         </ThemeProvider>
       </body>

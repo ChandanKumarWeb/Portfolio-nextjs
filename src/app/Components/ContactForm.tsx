@@ -78,13 +78,29 @@ const ContactForm = () => {
     return valid;
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    setIsSubmitting(true);
+ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  if (!validateForm()) return;
+  setIsSubmitting(true);
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        access_key: "23303863-7d29-48bb-b481-d2ebd9631346",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      }),
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
       toast.success("Message sent successfully!", {
         position: "bottom-center",
         style: {
@@ -99,7 +115,7 @@ const ContactForm = () => {
         },
       });
       setFormData({ name: "", email: "", phone: "", message: "" });
-    } catch {
+    } else {
       toast.error("Failed to send message. Please try again.", {
         position: "bottom-center",
         style: {
@@ -113,10 +129,22 @@ const ContactForm = () => {
           secondary: "#EF4444",
         },
       });
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  } catch (err) {
+    toast.error("Network error. Please try again later.", {
+      position: "bottom-center",
+      style: {
+        background: "#EF4444",
+        color: "#fff",
+        borderRadius: "12px",
+        boxShadow: "0 4px 12px rgba(239, 68, 68, 0.3)",
+      },
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   return (
     <section
