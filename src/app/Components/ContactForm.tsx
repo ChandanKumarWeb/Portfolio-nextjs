@@ -78,45 +78,60 @@ const ContactForm = () => {
     return valid;
   };
 
- const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  if (!validateForm()) return;
-  setIsSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    setIsSubmitting(true);
 
-  try {
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        access_key: "23303863-7d29-48bb-b481-d2ebd9631346",
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
-      }),
-    });
-
-    const result = await res.json();
-
-    if (result.success) {
-      toast.success("Message sent successfully!", {
-        position: "bottom-center",
-        style: {
-          background: "#10B981",
-          color: "#fff",
-          borderRadius: "12px",
-          boxShadow: "0 4px 12px rgba(16, 185, 129, 0.3)",
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        iconTheme: {
-          primary: "#fff",
-          secondary: "#10B981",
-        },
+        body: JSON.stringify({
+          access_key: "23303863-7d29-48bb-b481-d2ebd9631346",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
       });
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } else {
-      toast.error("Failed to send message. Please try again.", {
+
+      const result = await res.json();
+
+      if (result.success) {
+        toast.success("Message sent successfully!", {
+          position: "bottom-center",
+          style: {
+            background: "#10B981",
+            color: "#fff",
+            borderRadius: "12px",
+            boxShadow: "0 4px 12px rgba(16, 185, 129, 0.3)",
+          },
+          iconTheme: {
+            primary: "#fff",
+            secondary: "#10B981",
+          },
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        toast.error("Failed to send message. Please try again.", {
+          position: "bottom-center",
+          style: {
+            background: "#EF4444",
+            color: "#fff",
+            borderRadius: "12px",
+            boxShadow: "0 4px 12px rgba(239, 68, 68, 0.3)",
+          },
+          iconTheme: {
+            primary: "#fff",
+            secondary: "#EF4444",
+          },
+        });
+      }
+    } catch {
+      toast.error("Network error. Please try again later.", {
         position: "bottom-center",
         style: {
           background: "#EF4444",
@@ -124,26 +139,11 @@ const ContactForm = () => {
           borderRadius: "12px",
           boxShadow: "0 4px 12px rgba(239, 68, 68, 0.3)",
         },
-        iconTheme: {
-          primary: "#fff",
-          secondary: "#EF4444",
-        },
       });
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch {
-    toast.error("Network error. Please try again later.", {
-      position: "bottom-center",
-      style: {
-        background: "#EF4444",
-        color: "#fff",
-        borderRadius: "12px",
-        boxShadow: "0 4px 12px rgba(239, 68, 68, 0.3)",
-      },
-    });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
 
 
   return (
@@ -195,148 +195,193 @@ const ContactForm = () => {
             </motion.p>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10"
-          >
-            {(["name", "email", "phone"] as FormField[]).map((field, i) => {
-              const label =
-                field === "name"
-                  ? "Your Name"
-                  : field === "email"
-                  ? "Your Email"
-                  : "Phone Number";
-              const Icon =
-                field === "name" ? User : field === "email" ? Mail : Phone;
-              return (
-                <motion.div
-                  key={field}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1, type: "spring" }}
-                  className="col-span-1"
-                >
-                  <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-indigo-500 rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-300"></div>
-                    <div className="relative">
-                      <Icon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-500 dark:text-indigo-400 group-hover:text-pink-500 transition-colors" />
-                      <input
-                        type={
-                          field === "email"
-                            ? "email"
-                            : field === "phone"
-                            ? "tel"
-                            : "text"
-                        }
-                        name={field}
-                        value={formData[field]}
-                        onChange={handleChange}
-                        placeholder={label}
-                        className={`pl-12 w-full px-5 py-3.5 rounded-xl border ${
-                          errors[field]
-                            ? "border-red-500"
-                            : "border-gray-300 dark:border-gray-700"
-                        } bg-white/80 dark:bg-gray-800/80 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 backdrop-blur transition-all duration-300`}
-                        disabled={isSubmitting}
-                      />
+          {/* <div className="relative py-4 px-4 sm:px-8 md:px-16 lg:px-24 max-w-3xl mx-auto rounded-3xl
+    bg-gradient-to-br from-white/90 via-indigo-50/70 to-pink-50/70 
+    dark:from-gray-950/95 dark:via-gray-950/80 dark:to-indigo-950/70 
+    shadow-2xl border border-white/20 overflow-hidden backdrop-blur-2xl"> */}
+            <form
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10"
+            >
+              {(["name", "email", "phone"] as FormField[]).map((field, i) => {
+                const label =
+                  field === "name"
+                    ? "Your Name"
+                    : field === "email"
+                      ? "Your Email"
+                      : "Phone Number";
+                const Icon =
+                  field === "name" ? User : field === "email" ? Mail : Phone;
+                return (
+                  <motion.div
+                    key={field}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + i * 0.1, type: "spring" }}
+                    className={field === "phone" ? "col-span-1 md:col-span-2" : "col-span-1"}
+                  >
+                    <div className="relative group">
+                      {/* Glow effect - behind content */}
+                      <div className="absolute -inset-1.5 rounded-xl pointer-events-none 
+               bg-gradient-to-tr from-pink-400/30 via-indigo-400/30 to-transparent 
+               blur-lg opacity-0 group-hover:opacity-80 
+               transition-opacity duration-300 z-0" />
+                      {/* Content container */}
+                      <div className="relative z-10">
+                        <Icon className="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-500 dark:text-indigo-400 group-hover:text-pink-500 transition-colors z-20" />
+                        <input
+                          type={
+                            field === "email"
+                              ? "email"
+                              : field === "phone"
+                                ? "tel"
+                                : "text"
+                          }
+                          name={field}
+                          value={formData[field]}
+                          onChange={handleChange}
+                          placeholder={label}
+                          className={`
+                  pl-14 w-full pr-4 py-4 rounded-xl
+                  border-2 focus:border-transparent 
+                  ${errors[field]
+                              ? "border-red-400 ring-2 ring-red-200/50"
+                              : "border-gray-200 dark:border-gray-700 group-hover:border-indigo-300"
+                            }
+                  bg-white/60 dark:bg-gray-900/60
+                  focus:bg-white/90 dark:focus:bg-gray-900/90
+                  text-sm font-medium text-gray-900 dark:text-white
+                  shadow-lg shadow-indigo-100/30 dark:shadow-gray-900/40
+                  outline-none transition-all duration-300
+                  focus:ring-2 focus:ring-pink-300/80 focus:shadow-pink-100/50
+                  placeholder:text-gray-400 dark:placeholder:text-gray-500
+                  backdrop-blur-md
+                `}
+                          disabled={isSubmitting}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  {errors[field] && (
-                    <motion.p
-                      className="text-red-500 text-xs mt-1 ml-1"
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                    >
-                      {errors[field]}
-                    </motion.p>
-                  )}
-                </motion.div>
-              );
-            })}
-
-            <motion.div
-              className="col-span-1 md:col-span-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, type: "spring" }}
-            >
-              <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-indigo-500 rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-300"></div>
-                <div className="relative">
-                  <MessageSquare className="absolute left-4 top-4 text-indigo-500 dark:text-indigo-400 group-hover:text-pink-500 transition-colors" />
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Your Message"
-                    rows={5}
-                    className={`pl-12 w-full px-5 py-3.5 rounded-xl border ${
-                      errors.message
-                        ? "border-red-500"
-                        : "border-gray-300 dark:border-gray-700"
-                    } bg-white/80 dark:bg-gray-800/80 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 backdrop-blur transition-all duration-300`}
-                    disabled={isSubmitting}
-                  />
-                </div>
-              </div>
-              {errors.message && (
-                <motion.p
-                  className="text-red-500 text-xs mt-1 ml-1"
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  {errors.message}
-                </motion.p>
-              )}
-            </motion.div>
-
-            <motion.div
-              className="col-span-1 md:col-span-2 flex justify-center mt-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, type: "spring" }}
-            >
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="relative group flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-pink-500 hover:from-indigo-700 hover:to-pink-600 text-white px-8 py-3.5 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center">
-                  {isSubmitting ? (
-                    <>
-                      <svg
-                        className="animate-spin h-5 w-5 mr-2 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
+                    {errors[field] && (
+                      <motion.p
+                        className="text-red-500 text-xs mt-2 ml-3 font-medium tracking-wide"
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
                       >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                        />
-                      </svg>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      <span className="ml-1">Send Message</span>
-                    </>
-                  )}
-                </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </button>
-            </motion.div>
-          </form>
+                        {errors[field]}
+                      </motion.p>
+                    )}
+                  </motion.div>
+                );
+              })}
+
+              <motion.div
+                className="col-span-1 md:col-span-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, type: "spring" }}
+              >
+                <div className="relative group">
+                  {/* Glow effect - behind content */}
+                  <div className="absolute -inset-1.5 rounded-xl pointer-events-none 
+          bg-gradient-to-r from-pink-400/40 via-indigo-400/40 to-transparent 
+          blur-lg opacity-0 group-hover:opacity-75 
+          transition-opacity duration-300 z-0" />
+                  {/* Content container */}
+                  <div className="relative z-10">
+                    <MessageSquare className="absolute left-5 top-4 text-indigo-500 dark:text-indigo-400 group-hover:text-pink-500 transition-colors z-20" />
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Your Message"
+                      rows={5}
+                      className={`
+              pl-14 w-full pr-4 py-4 rounded-xl
+              border-2 focus:border-transparent 
+              ${errors.message
+                          ? "border-red-400 ring-2 ring-red-200/50"
+                          : "border-gray-200 dark:border-gray-700 group-hover:border-indigo-300"
+                        }
+              bg-white/60 dark:bg-gray-900/60
+              focus:bg-white/90 dark:focus:bg-gray-900/90
+              text-sm font-medium text-gray-900 dark:text-white
+              shadow-lg shadow-indigo-100/30 dark:shadow-gray-900/40
+              outline-none transition-all duration-300
+              focus:ring-2 focus:ring-pink-300/80 focus:shadow-pink-100/50
+              placeholder:text-gray-400 dark:placeholder:text-gray-500
+              backdrop-blur-md resize-none
+            `}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                </div>
+                {errors.message && (
+                  <motion.p
+                    className="text-red-500 text-xs mt-2 ml-3 font-medium tracking-wide"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {errors.message}
+                  </motion.p>
+                )}
+              </motion.div>
+
+              <motion.div
+                className="col-span-1 md:col-span-2 flex justify-center mt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, type: "spring" }}
+              >
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="relative group flex items-center gap-2 justify-center text-lg
+          bg-gradient-to-r from-indigo-600 via-fuchsia-500 to-pink-500
+          hover:from-indigo-700 hover:via-fuchsia-600 hover:to-pink-600
+          text-white px-8 py-4 rounded-2xl font-semibold
+          transition-all duration-300 shadow-xl hover:shadow-2xl 
+          overflow-hidden tracking-wide
+          after:absolute after:inset-0 after:bg-white/20 after:opacity-0 after:blur after:transition-opacity
+          after:duration-300 group-hover:after:opacity-30
+          focus:outline-none disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  <span className="relative z-10 flex items-center">
+                    {isSubmitting ? (
+                      <>
+                        <svg
+                          className="animate-spin h-5 w-5 mr-2 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                          />
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        <span className="ml-1">Send Message</span>
+                      </>
+                    )}
+                  </span>
+                </button>
+              </motion.div>
+            </form>
+          {/* </div> */}
+
 
           {/* Social links or additional info can be added here */}
           <motion.div
