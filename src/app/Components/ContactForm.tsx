@@ -130,7 +130,7 @@ const ContactForm = () => {
         },
       });
     }
-  } catch (err) {
+  } catch {
     toast.error("Network error. Please try again later.", {
       position: "bottom-center",
       style: {
