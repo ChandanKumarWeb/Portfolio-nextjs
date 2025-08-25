@@ -1,8 +1,15 @@
 "use client";
 
-import React, { useRef } from "react";
-import { Minus } from "lucide-react";
-import { Code2, Paintbrush, Cloud, Zap, Wrench, Bug } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import { Minus, X } from "lucide-react";
+import {
+  Code2,
+  Paintbrush,
+  Cloud,
+  Zap,
+  Wrench,
+  Bug,
+} from "lucide-react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import type { Variants } from "framer-motion";
@@ -14,6 +21,8 @@ export default function Services() {
       title: "Web Development",
       description:
         "Building responsive and dynamic web applications using modern frameworks like React, Next.js, and Angular.",
+      more:
+        "Our web development services cover everything from single-page apps to large-scale enterprise solutions. We focus on clean architecture, responsive design, and scalable code. By leveraging frameworks like React, Next.js, Angular, and modern backend stacks, we ensure that your application performs flawlessly across devices and platforms. Security and performance are at the core of every project we deliver.",
       icon: <Code2 className="w-6 h-6" />,
       image: "/Images/WebDev.png",
       color: "from-blue-500 to-blue-700",
@@ -24,6 +33,8 @@ export default function Services() {
       title: "UI/UX Design",
       description:
         "Creating intuitive and user-friendly interfaces with a focus on clean design and modular architecture.",
+      more:
+        "We craft visually stunning and user-friendly designs that prioritize usability and accessibility. Our process involves wireframing, prototyping, and testing to ensure intuitive navigation and enjoyable user experiences. Whether it’s mobile apps, web apps, or dashboards, our designs are created with scalability and aesthetics in mind, ensuring your brand leaves a lasting impression.",
       icon: <Paintbrush className="w-6 h-6" />,
       image: "/Images/UiUx.png",
       color: "from-pink-500 to-purple-600",
@@ -34,6 +45,8 @@ export default function Services() {
       title: "API Integration",
       description:
         "Integrating third-party APIs to enhance functionality and provide dynamic data handling.",
+      more:
+        "We specialize in integrating REST, GraphQL, and third-party APIs seamlessly into your application. From payment gateways (Stripe, PayPal) to authentication (OAuth, Firebase Auth) and analytics, we make sure the integrations are secure, reliable, and optimized. Our goal is to extend the functionality of your app while keeping the codebase clean and maintainable.",
       icon: <Cloud className="w-6 h-6" />,
       image: "/Images/ApiIntegration.png",
       color: "from-green-500 to-teal-600",
@@ -44,6 +57,8 @@ export default function Services() {
       title: "Performance Optimization",
       description:
         "Improving application performance through code optimization, lazy loading, and efficient state management.",
+      more:
+        "Slow apps lose users. We focus on improving performance with techniques like code splitting, image optimization, caching, lazy loading, and efficient state management using Redux, Zustand, or React Query. By analyzing bottlenecks with performance audits and monitoring tools, we ensure faster load times, reduced memory consumption, and smoother user experiences.",
       icon: <Zap className="w-6 h-6" />,
       image: "/Images/performance.png",
       color: "from-yellow-500 to-amber-600",
@@ -54,6 +69,8 @@ export default function Services() {
       title: "Testing & Debugging",
       description:
         "Conducting thorough testing and debugging to ensure high-quality, bug-free applications.",
+      more:
+        "Quality assurance is critical. We implement unit tests, integration tests, and end-to-end testing using tools like Jest, Cypress, and Playwright. Our debugging practices ensure that issues are identified and fixed early, reducing risks in production. With continuous testing pipelines (CI/CD), we guarantee that your application remains stable, reliable, and bug-free.",
       icon: <Bug className="w-6 h-6" />,
       image: "/Images/Testing.png",
       color: "from-red-500 to-orange-600",
@@ -64,6 +81,8 @@ export default function Services() {
       title: "Maintenance & Support",
       description:
         "Providing ongoing maintenance and support to keep your applications running smoothly.",
+      more:
+        "Our support doesn’t end after deployment. We provide regular updates, security patches, feature enhancements, and real-time monitoring. Whether it’s scaling your infrastructure, updating dependencies, or troubleshooting issues, our dedicated maintenance ensures your application continues to perform and grow with your business needs.",
       icon: <Wrench className="w-6 h-6" />,
       image: "/Images/Maintenance.png",
       color: "from-indigo-500 to-blue-600",
@@ -71,6 +90,20 @@ export default function Services() {
     },
   ];
 
+
+  const [selectedCard, setSelectedCard] = useState<any>(null);
+
+  useEffect(() => {
+    if (selectedCard) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedCard]);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -89,51 +122,35 @@ export default function Services() {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { 
-        type: "spring", 
-        bounce: 0.4, 
-        duration: 0.8 
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.8,
       },
     },
     hover: {
       y: -10,
       scale: 1.02,
-      transition: { duration: 0.3 }
-    }
+      transition: { duration: 0.3 },
+    },
   };
-
-  // const titleVariants: Variants = {
-  //   hidden: { opacity: 0, x: -30 },
-  //   show: { 
-  //     opacity: 1, 
-  //     x: 0,
-  //     transition: {
-  //       type: "spring",
-  //       stiffness: 100,
-  //       damping: 10
-  //     }
-  //   }
-  // };
 
   return (
     <section
       id="servicesSection"
-      className="py-16 px-4 bg-[#f8f6f8]  dark:bg-[#0b0b0b]  text-gray-900 dark:text-white relative overflow-hidden"
+      className="py-16 px-4 bg-[#f8f6f8] dark:bg-[#0b0b0b] text-gray-900 dark:text-white relative overflow-hidden"
     >
-      {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-40 h-40 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 dark:opacity-5"></div>
         <div className="absolute bottom-10 right-10 w-60 h-60 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 dark:opacity-5"></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto relative">
-        {/* Heading with animation */}
         <div className="flex justify-start items-center text-red-500 mb-10">
           <h1 className="text-3xl font-bold">Services</h1>
           <Minus size={45} />
         </div>
 
-        {/* Cards Grid */}
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -149,14 +166,17 @@ export default function Services() {
                 whileHover="hover"
                 className="group relative"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${card.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md`} />
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${card.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md`}
+                />
+
                 <div className="relative h-full bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl dark:hover:shadow-blue-900/20 transition-all duration-300 flex flex-col items-center text-center overflow-hidden">
-                  {/* Icon background */}
-                  <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${card.color} rounded-full opacity-10 dark:opacity-5`} />
-                  
-                  {/* Image container with gradient border */}
-                  <div className={`relative w-24 h-24 mb-6 rounded-xl bg-gradient-to-br ${card.color} p-1`}>
+                  <div
+                    className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${card.color} rounded-full opacity-10 dark:opacity-5`}
+                  />
+                  <div
+                    className={`relative w-24 h-24 mb-6 rounded-xl bg-gradient-to-br ${card.color} p-1`}
+                  >
                     <div className="w-full h-full bg-white dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center p-2">
                       <Image
                         src={card.image}
@@ -167,23 +187,23 @@ export default function Services() {
                       />
                     </div>
                   </div>
-                  
-                  {/* Icon with gradient background */}
-                  <div className={`w-12 h-12 ${card.hoverColor} bg-gradient-to-br ${card.color} rounded-full flex items-center justify-center mb-4 text-white`}>
+
+                  <div
+                    className={`w-12 h-12 ${card.hoverColor} bg-gradient-to-br ${card.color} rounded-full flex items-center justify-center mb-4 text-white`}
+                  >
                     {card.icon}
                   </div>
-                  
-                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-blue-500 group-hover:to-purple-600 transition-all duration-300">
-                    {card.title}
-                  </h3>
-                  
+
+                  <h3 className="text-xl font-bold mb-3">{card.title}</h3>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                     {card.description}
                   </p>
-                  
-                  {/* Learn more link */}
+
                   <div className="mt-auto pt-4">
-                    <span className={`text-sm font-medium ${card.hoverColor} bg-gradient-to-br ${card.color} bg-clip-text text-transparent cursor-pointer`}>
+                    <span
+                      onClick={() => setSelectedCard(card)}
+                      className={`text-sm font-medium ${card.hoverColor} bg-gradient-to-br ${card.color} bg-clip-text text-transparent cursor-pointer`}
+                    >
                       Learn more →
                     </span>
                   </div>
@@ -193,6 +213,93 @@ export default function Services() {
           </AnimatePresence>
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {selectedCard && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={() => setSelectedCard(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 50 }}
+              transition={{ type: "spring", stiffness: 200, damping: 25 }}
+              className="
+          relative 
+          w-full 
+          max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl 
+          bg-white dark:bg-black 
+          rounded-2xl shadow-2xl 
+          border border-gray-200 dark:border-gray-800 
+          p-4 sm:p-6 md:p-8 
+          max-h-[90vh] overflow-y-auto
+        "
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCard(null)}
+                className="absolute top-4 right-4 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Top Section */}
+              <div className="flex flex-col items-center text-center mb-6">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl border border-gray-300 dark:border-gray-700 flex items-center justify-center bg-gray-50 dark:bg-zinc-900 mb-4 shadow-md"
+                >
+                  <Image
+                    src={selectedCard.image}
+                    alt={selectedCard.title}
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                  />
+                </motion.div>
+                <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 tracking-tight">
+                  {selectedCard.title}
+                </h2>
+              </div>
+
+              {/* Content */}
+              <div className="text-left space-y-4">
+                <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
+                  {selectedCard.description}
+                </p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                  className="text-gray-900 dark:text-gray-200 border-l-4 border-gray-400 dark:border-gray-600 pl-3 sm:pl-4 italic text-sm sm:text-base"
+                >
+                  {selectedCard.more}
+                </motion.div>
+              </div>
+
+              {/* Footer */}
+              <div className="mt-6 sm:mt-8 flex justify-end">
+                <button
+                  onClick={() => setSelectedCard(null)}
+                  className="px-4 sm:px-6 py-2 border border-gray-800 dark:border-gray-300 text-gray-800 dark:text-gray-200 rounded-lg font-medium hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all text-sm sm:text-base"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+
     </section>
   );
 }

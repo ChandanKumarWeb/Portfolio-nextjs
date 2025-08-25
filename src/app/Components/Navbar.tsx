@@ -1,11 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ModeToggle } from "./ModeToggle";
 import MobileToggle from "./MobileToggle";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuOpen]);
 
   const navLinks = [
     { label: "Home", href: "#heroSection", isPrimary: true },
@@ -34,11 +45,10 @@ export default function Navbar() {
               <a
                 key={label}
                 href={href}
-                className={`${
-                  isPrimary
-                    ? "text-blue-700 dark:text-blue-500 font-medium hover:underline"
-                    : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-                }`}
+                className={`${isPrimary
+                  ? "text-blue-700 dark:text-blue-500 font-medium hover:underline"
+                  : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  }`}
               >
                 {label}
               </a>
@@ -79,23 +89,31 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden px-4 pt-2 pb-4 space-y-2 bg-white dark:bg-gray-900 shadow-md">
-          {navLinks.map(({ label, href, isPrimary }) => (
-            <a
-              key={label}
-              href={href}
-              onClick={() => setMenuOpen(false)} 
-              className={`block ${
-                isPrimary
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-smz-40"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden="true"
+          />
+          {/* Mobile Menu */}
+          <div className="md:hidden px-4 pt-2 pb-4 space-y-2 bg-white dark:bg-gray-900 shadow-md fixed top-0 left-0 right-0 z-50">
+            {navLinks.map(({ label, href, isPrimary }) => (
+              <a
+                key={label}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className={`block ${isPrimary
                   ? "text-blue-600 dark:text-blue-400 font-medium"
                   : "text-gray-700 dark:text-gray-300"
-              }`}
-            >
-              {label}
-            </a>
-          ))}
-          <MobileToggle />
-        </div>
+                  }`}
+              >
+                {label}
+              </a>
+            ))}
+            <MobileToggle setMenuOpen={setMenuOpen} />
+          </div>
+        </>
       )}
     </header>
   );

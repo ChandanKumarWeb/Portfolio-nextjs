@@ -4,7 +4,11 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export default function MobileToggle() {
+interface MobileToggleProps {
+  setMenuOpen: (open: boolean) => void;
+}
+
+export default function MobileToggle({ setMenuOpen }: MobileToggleProps) {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -12,7 +16,7 @@ export default function MobileToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null; 
+  if (!mounted) return null;
 
   return (
     <div className="flex flex-col space-y-2">
@@ -21,7 +25,10 @@ export default function MobileToggle() {
         <Button
           variant={resolvedTheme === "light" ? "default" : "outline"}
           size="sm"
-          onClick={() => setTheme("light")}
+          onClick={() => {
+            setTheme("light");
+            setMenuOpen(false);
+          }}
           className="flex-1"
         >
           <Sun className="mr-2 h-4 w-4" />
@@ -30,7 +37,10 @@ export default function MobileToggle() {
         <Button
           variant={resolvedTheme === "dark" ? "default" : "outline"}
           size="sm"
-          onClick={() => setTheme("dark")}
+          onClick={() => {
+            setTheme("dark");
+            setMenuOpen(false);
+          }}
           className="flex-1"
         >
           <Moon className="mr-2 h-4 w-4" />
@@ -39,7 +49,10 @@ export default function MobileToggle() {
         <Button
           variant={resolvedTheme === "system" ? "default" : "outline"}
           size="sm"
-          onClick={() => setTheme("system")}
+          onClick={() => {
+            setTheme("system");
+            setMenuOpen(false);
+          }}
           className="flex-1"
         >
           <Monitor className="mr-2 h-4 w-4" />

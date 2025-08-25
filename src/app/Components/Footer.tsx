@@ -47,7 +47,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden  bg-white dark:bg-black text-gray-800 dark:text-white pt-20 pb-12 px-4 mt-24 border-t border-gray-200 dark:border-gray-800">
+    <footer className="relative overflow-hidden  bg-white dark:bg-black text-gray-800 dark:text-white pt-20 pb-12 px-4  border-t border-gray-200 dark:border-gray-800">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-1/4 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 dark:opacity-5"></div>
@@ -72,7 +72,7 @@ export default function Footer() {
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs mx-auto md:mx-0">
               Crafting exceptional digital experiences with modern web technologies
             </p>
-            
+
             <div className="flex justify-center md:justify-start gap-4 mt-6">
               {socialLinks.map((link, index) => (
                 <motion.a
@@ -98,7 +98,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="text-center md:text-left">
-            <motion.h3 
+            <motion.h3
               className="text-lg font-semibold mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -114,8 +114,8 @@ export default function Footer() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + index * 0.05, duration: 0.3 }}
                 >
-                  <a 
-                    href={link.href} 
+                  <a
+                    href={link.href}
                     className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center justify-center md:justify-start gap-1"
                   >
                     <span className="w-1 h-1 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -128,7 +128,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="text-center md:text-left">
-            <motion.h3 
+            <motion.h3
               className="text-lg font-semibold mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +136,7 @@ export default function Footer() {
             >
               Contact
             </motion.h3>
-            <motion.div 
+            <motion.div
               className="space-y-2 text-sm text-gray-600 dark:text-gray-400"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -178,7 +178,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <motion.div 
+        <motion.div
           className="mt-16 text-center text-xs text-gray-500 dark:text-gray-400 flex flex-col items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

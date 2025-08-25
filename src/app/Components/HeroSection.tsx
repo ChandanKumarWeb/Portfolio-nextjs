@@ -62,7 +62,7 @@ export default function HeroSection() {
               className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 w-48 md:w-80"
             >
               <Image
-                src="/Images/Freelancer.png"
+                src="/Images/Freelancer.avif"
                 alt="Freelancer"
                 width={500}
                 height={500}
