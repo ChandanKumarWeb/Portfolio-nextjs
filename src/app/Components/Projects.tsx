@@ -2,6 +2,7 @@
 
 import { Minus } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import TechIconWithTooltip from "@/components/ui/TechIconWithTooltip";
 import {
   SiNextdotjs,
@@ -57,7 +58,7 @@ const projectData = [
     link: "https://www.avtarevmotors.in/",
     desc: "Official website for EV brand, showcasing electric vehicle models and booking info with modern UI.",
     tech: [
-      { icon: <SiNextdotjs className="text-gray-900 dark:text-gray-200"/>, name: "Next.js" },
+      { icon: <SiNextdotjs className="text-gray-900 dark:text-gray-200" />, name: "Next.js" },
       { icon: <SiTailwindcss className="text-blue-500" />, name: "Tailwind CSS" },
       { icon: <SiFramer className="text-pink-400" />, name: "Framer Motion" },
       { icon: <SiNetlify className="text-green-500" />, name: "Netlify" },
@@ -93,9 +94,11 @@ export default function Projects() {
               <a href={project.link} target="_blank" rel="noopener noreferrer">
                 {/* Image */}
                 <div className="h-52 w-full overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={600}
+                    height={208}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                 </div>

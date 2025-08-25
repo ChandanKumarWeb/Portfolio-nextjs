@@ -90,8 +90,8 @@ export default function Services() {
     },
   ];
 
-
-  const [selectedCard, setSelectedCard] = useState<any>(null);
+  type CardType = typeof CardData[number];
+  const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
 
   useEffect(() => {
     if (selectedCard) {
