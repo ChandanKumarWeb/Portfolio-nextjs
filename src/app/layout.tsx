@@ -23,9 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${robotoCondensed.variable} antialiased cz-shortcut-listen="true overflow-hidden"`}
-      >
+      <body className={`${robotoCondensed.variable} antialiased overflow-hidden`} data-cz-shortcut-listen="true">
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -34,7 +33,7 @@ export default function RootLayout({
         >
           {children}
           <Toaster position="bottom-center" />
-          <ScrollToTopButton/>
+          <ScrollToTopButton />
         </ThemeProvider>
       </body>
     </html>
