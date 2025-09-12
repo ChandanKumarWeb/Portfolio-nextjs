@@ -23,55 +23,47 @@ export default function HeroSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] animate-glowRing">
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-green-400 via-emerald-500 to-teal-400 relative flex items-center justify-center shadow-xl animate-pulse-slow">
-              <div className="absolute w-[70%] h-[70%] bg-[#121212] rounded-full z-10" />
+          <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] animate-glowRing flex items-center justify-center">
+            {/* centered inner dark circle (70% of parent) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-[#121212] rounded-full z-10" />
 
-              {/* Floating bubbles */}
-              {[
-                { label: "Next.js", pos: "top-4 left-4 md:top-14 md:left-10", delay: 0 },
-                { label: "Tailwind", pos: "top-4 right-4 md:top-14 md:right-10", delay: 0.2 },
-                { label: "AI", pos: "bottom-4 left-4 md:bottom-14 md:left-10", delay: 0.4 },
-                { label: "GitHub", pos: "bottom-4 right-4 md:bottom-14 md:right-10", delay: 0.6 },
-              ].map(({ label, pos, delay }, i) => (
-                <motion.div
-                  key={i}
-                  className={`absolute ${pos} w-14 h-14 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center text-sm font-semibold z-20 shadow-lg`}
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    delay,
-                  }}
-                >
-                  {label}
-                </motion.div>
-              ))}
-            </div>
+            {/* Floating bubbles (unchanged) */}
+            {[
+              { label: "Next.js", pos: "top-4 left-4 md:top-14 md:left-10", delay: 0 },
+              { label: "Tailwind", pos: "top-4 right-4 md:top-14 md:right-10", delay: 0.2 },
+              { label: "AI", pos: "bottom-4 left-4 md:bottom-14 md:left-10", delay: 0.4 },
+              { label: "GitHub", pos: "bottom-4 right-4 md:bottom-14 md:right-10", delay: 0.6 },
+            ].map(({ label, pos, delay }, i) => (
+              <motion.div
+                key={i}
+                className={`absolute ${pos} w-14 h-14 bg-[#1e1e1e] text-green-300 rounded-full flex items-center justify-center text-sm font-semibold z-20 shadow-lg`}
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, repeatType: "loop", delay }}
+              >
+                {label}
+              </motion.div>
+            ))}
 
-            {/* Floating Image */}
+            {/* CENTERED floating image: use a small wrapper (relative) and Image fill */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-              className="absolute  top-[22%] left-[28%] -translate-x-1/2 -translate-y-1/2 z-20 rounded-full shadow-lg"
+              transition={{ duration: 3, repeat: Infinity, repeatType: "loop", ease: "easeInOut" }}
+              className="absolute inset-0 z-30 flex items-center justify-center"
             >
-              <Image
-                src="/Images/Freelancer.jpeg"
-                alt="Freelancer"
-                width={200}
-                height={200}
-                className="rounded-full drop-shadow-lg"
-              />
+              <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden shadow-lg">
+                {/* 'fill' makes the Next/Image cover the wrapper; wrapper must be position:relative */}
+                <Image
+                  src="/Images/Freelancer.jpeg"
+                  alt="Freelancer"
+                  fill
+                  sizes="(max-width: 768px) 128px, 192px"
+                  className="object-cover"
+                />
+              </div>
             </motion.div>
-
           </div>
         </motion.div>
+
 
         {/* Text section - comes after image in mobile */}
         <motion.div
