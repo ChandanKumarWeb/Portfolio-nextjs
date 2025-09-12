@@ -59,13 +59,13 @@ export default function HeroSection() {
                 repeatType: "loop",
                 ease: "easeInOut",
               }}
-              className="absolute  top-[30%] left-[13%] -translate-x-1/2 -translate-y-1/2 z-20 w-48 md:w-80"
+              className="absolute  top-[22%] left-[28%] -translate-x-1/2 -translate-y-1/2 z-20 rounded-full shadow-lg"
             >
               <Image
-                src="/Images/Freelancer.avif"
+                src="/Images/Freelancer.jpeg"
                 alt="Freelancer"
-                width={500}
-                height={500}
+                width={200}
+                height={200}
                 className="rounded-full drop-shadow-lg"
               />
             </motion.div>
