@@ -48,7 +48,7 @@ export default function HeroSection() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, repeatType: "loop", ease: "easeInOut" }}
-              className="absolute inset-0 z-30 flex items-center justify-center"
+              className="absolute inset-0 z-20 flex items-center justify-center"
             >
               <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden shadow-lg">
                 {/* 'fill' makes the Next/Image cover the wrapper; wrapper must be position:relative */}
