@@ -24,7 +24,7 @@ const testimonials = [
     name: "Alok Ray",
     role: "Founder, Sankalp Electra Auto Motive",
     message:
-      "Chandan did an excellent job developing our Avtar EV Motors website. He created a modern, responsive front-end with smooth animations and perfect attention to branding details. His technical knowledge of Angular and API integration helped us achieve exactly what we needed for a seamless user experience.",
+      "Chandan did an excellent job developing our Sankalp Electra Auto Motive website. He created a modern, responsive front-end with smooth animations and perfect attention to branding details. His technical knowledge of Angular and API integration helped us achieve exactly what we needed for a seamless user experience.",
     image: "/Images/Freelancer.png",
   },
 ];
