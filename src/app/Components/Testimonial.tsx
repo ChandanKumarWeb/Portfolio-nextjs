@@ -6,32 +6,29 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const testimonials = [
-    {
-        name: "Yash Pratihasta",
-        role: "CEO, Veda Motion Care",
-        message:
-“Working with Chandan on the VedaMotion Care project was an amazing experience.
-He built a clean, responsive UI that perfectly matched our healthcare brand’s vision.
-His attention to detail, quick turnaround, and strong communication made the process smooth and efficient.”,        image: "/Images/Freelancer.png",
-    },
-    {
-        name: "Kartik ",
-        role: "CEO, Avtar Motors",
-        message:
-“Chandan did an excellent job developing our Avtar EV Motors website.
-He created a modern, responsive front-end with smooth animations and perfect attention to branding details.
-His technical knowledge of Angular and API integration helped us achieve exactly what we needed for a seamless user experience.”,
+  {
+    name: "Yash Pratihasta",
+    role: "CEO, Veda Motion Care",
+    message:
+      "Working with Chandan on the VedaMotion Care project was an amazing experience. He built a clean, responsive UI that perfectly matched our healthcare brand’s vision. His attention to detail, quick turnaround, and strong communication made the process smooth and efficient.",
     image: "/Images/Freelancer.png",
-    },
-    {
-        name: "Alok Ray,
-        role: "Founder, Sankalp Electra Auto Motive",
-        message:
-“Chandan did an excellent job developing our Avtar EV Motors website.
-He created a modern, responsive front-end with smooth animations and perfect attention to branding details.
-His technical knowledge of Angular and API integration helped us achieve exactly what we needed for a seamless user experience.”,        image: "/Images/Freelancer.png",
-    },
+  },
+  {
+    name: "Kartik",
+    role: "CEO, Avtar Motors",
+    message:
+      "Chandan did an excellent job developing our Avtar EV Motors website. He created a modern, responsive front-end with smooth animations and perfect attention to branding details. His technical knowledge of Angular and API integration helped us achieve exactly what we needed for a seamless user experience.",
+    image: "/Images/Freelancer.png",
+  },
+  {
+    name: "Alok Ray",
+    role: "Founder, Sankalp Electra Auto Motive",
+    message:
+      "Chandan did an excellent job developing our Avtar EV Motors website. He created a modern, responsive front-end with smooth animations and perfect attention to branding details. His technical knowledge of Angular and API integration helped us achieve exactly what we needed for a seamless user experience.",
+    image: "/Images/Freelancer.png",
+  },
 ];
+
 
 export default function Testimonial() {
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
