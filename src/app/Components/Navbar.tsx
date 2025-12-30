@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ModeToggle } from "./ModeToggle";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import MobileToggle from "./MobileToggle";
 
 export default function Navbar() {
@@ -53,7 +53,7 @@ export default function Navbar() {
                 {label}
               </a>
             ))}
-            <ModeToggle />
+            <AnimatedThemeToggler />
           </div>
 
           {/* Right Side Actions */}
