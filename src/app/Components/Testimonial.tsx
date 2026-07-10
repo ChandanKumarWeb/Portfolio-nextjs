@@ -1,17 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
-import { Minus } from "lucide-react";
-import { motion } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { motion, useInView } from "motion/react";
 import Image from "next/image";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
     name: "Yash Pratihasta",
     role: "CEO, Veda Motion Care",
     message:
-      "Working with Chandan on the VedaMotion Care project was an amazing experience. He built a clean, responsive UI that perfectly matched our healthcare brand’s vision. His attention to detail, quick turnaround, and strong communication made the process smooth and efficient.",
+      "Working with Chandan on the VedaMotion Care project was an amazing experience. He built a clean, responsive UI that perfectly matched our healthcare brand's vision. His attention to detail, quick turnaround, and strong communication made the process smooth and efficient.",
     image: "/Images/Freelancer.png",
+    rating: 5,
   },
   {
     name: "Kartik",
@@ -19,6 +20,7 @@ const testimonials = [
     message:
       "Chandan did an excellent job developing our Avtar EV Motors website. He created a modern, responsive front-end with smooth animations and perfect attention to branding details. His technical knowledge of Angular and API integration helped us achieve exactly what we needed for a seamless user experience.",
     image: "/Images/Freelancer.png",
+    rating: 5,
   },
   {
     name: "Alok Ray",
@@ -26,77 +28,120 @@ const testimonials = [
     message:
       "Chandan did an excellent job developing our Sankalp Electra Auto Motive website. He created a modern, responsive front-end with smooth animations and perfect attention to branding details. His technical knowledge of Angular and API integration helped us achieve exactly what we needed for a seamless user experience.",
     image: "/Images/Freelancer.png",
+    rating: 5,
   },
 ];
 
-
 export default function Testimonial() {
-    const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isPaused, setIsPaused] = useState(false);
 
-    return (
-        <section
-            id="testimonials"
-            className="bg-white dark:bg-[#0d0d0d] py-20 px-6 overflow-x-hidden"
+  // Duplicate for infinite scroll
+  const allTestimonials = [...testimonials, ...testimonials];
+
+  return (
+    <section
+      id="testimonials"
+      className="py-20 px-4 bg-muted/30 relative overflow-hidden"
+    >
+      {/* Decorative */}
+      <div className="absolute top-10 left-1/4 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 right-1/4 w-48 h-48 bg-accent/5 rounded-full blur-3xl" />
+
+      <div className="max-w-6xl mx-auto relative" ref={ref}>
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="mb-14"
         >
-            <div className="max-w-6xl mx-auto text-center">
-                {/* Section Header */}
-                <div className="flex justify-start items-center text-red-500 mb-12">
-                    <h2 className="text-3xl font-bold">Testimonials</h2>
-                    <Minus size={45} />
+          <span className="text-primary text-sm font-semibold uppercase tracking-widest">
+            What Clients Say
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
+            Testimonials
+          </h2>
+          <div className="w-16 h-1 bg-primary rounded-full mt-4" />
+        </motion.div>
+
+        {/* Scrolling Container */}
+        <div
+          className="overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <motion.div
+            className="flex gap-6"
+            animate={{
+              x: isPaused ? undefined : ["0%", "-50%"],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 25,
+                ease: "linear",
+              },
+            }}
+            style={{ willChange: "transform" }}
+          >
+            {allTestimonials.map((t, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-[320px] sm:w-[360px]"
+              >
+                <div className="relative h-full bg-card border border-border rounded-2xl p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  {/* Quote icon */}
+                  <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/10" />
+
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-4">
+                    {Array.from({ length: t.rating }).map((_, si) => (
+                      <Star
+                        key={si}
+                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                  </div>
+
+                  {/* Message */}
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-5">
+                    &ldquo;{t.message}&rdquo;
+                  </p>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-3 mt-auto">
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-primary/20">
+                      <Image
+                        src={t.image}
+                        alt={t.name}
+                        fill
+                        sizes="44px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground">
+                        {t.name}
+                      </h4>
+                      <p className="text-xs text-primary font-medium">
+                        {t.role}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
 
-                {/* Auto-Scrolling Container */}
-                <div className="w-full overflow-x-auto overflow-y-hidden">
-                    <motion.div
-                        className="flex gap-6"
-                        initial={{ x: 0 }}
-                        animate={{ x: [0, -1000] }}
-                        transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-                    >
-
-                        {testimonials.concat(testimonials).map((t, i) => {
-                            const isExpanded = expandedIndex === i;
-                            const shortMessage = `${t.message.slice(0, 140)}...`;
-
-                            return (
-                                <motion.div
-                                    key={i}
-                                    className="bg-white dark:bg-[#1c1c1c] border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md p-6 min-w-[280px] max-w-xs flex-shrink-0 flex flex-col items-center text-center hover:shadow-xl transition duration-300 overflow-hidden"
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: i * 0.2 }}
-                                >
-                                    <Image
-                                        src={t.image}
-                                        alt={t.name}
-                                        width={80}
-                                        height={80}
-                                        className="rounded-full mb-4 border-4 border-blue-500 shadow-md object-cover"
-                                    />
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                        {t.name}
-                                    </h3>
-                                    <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-3">
-                                        {t.role}
-                                    </p>
-                                    <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed break-words w-full max-w-xs">
-                                        {isExpanded ? t.message : shortMessage}
-                                        {t.message.length > 140 && (
-                                            <span
-                                                className="text-blue-500 cursor-pointer underline ml-1"
-                                                onClick={() => setExpandedIndex(isExpanded ? null : i)}
-                                            >
-                                                {isExpanded ? "Show less" : "Read more"}
-                                            </span>
-                                        )}
-                                    </p>
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
-                </div>
-            </div>
-        </section>
-    );
+        {/* Pause hint */}
+        <p className="text-center text-xs text-muted-foreground mt-6">
+          Hover to pause • Drag to explore
+        </p>
+      </div>
+    </section>
+  );
 }

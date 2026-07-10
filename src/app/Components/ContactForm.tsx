@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, User, MessageSquare, Phone, Send, Minus } from "lucide-react";
+import React, { useState, useRef } from "react";
+import { motion, useInView } from "motion/react";
+import { Mail, User, MessageSquare, Phone, Send } from "lucide-react";
 import { toast } from "react-hot-toast";
 
 type FormField = "name" | "email" | "phone" | "message";
 
 const ContactForm = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState<Record<FormField, string>>({
     name: "",
     email: "",
@@ -104,29 +106,44 @@ const ContactForm = () => {
   return (
     <section
       id="contactSection"
-      className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-black text-black dark:text-white"
+      className="py-20 px-4 bg-background relative overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto">
+      {/* Decorative */}
+      <div className="absolute top-20 -left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 -right-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+
+      <div className="max-w-4xl mx-auto relative" ref={ref}>
         {/* Header */}
-        <div className="flex items-center gap-3 mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold">Contact Me</h1>
-          <Minus size={36} />
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="mb-14"
+        >
+          <span className="text-primary text-sm font-semibold uppercase tracking-widest">
+            Get In Touch
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
+            Contact Me
+          </h2>
+          <div className="w-16 h-1 bg-primary rounded-full mt-4" />
+        </motion.div>
 
         {/* Card */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-gray-800 
-                     p-8 sm:p-10 rounded-2xl shadow-lg"
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="bg-card border border-border p-8 sm:p-10 rounded-2xl hover:border-primary/20 transition-colors duration-300"
         >
           {/* Intro */}
           <div className="mb-10 text-center">
-            <h2 className="text-3xl font-bold">Get In Touch</h2>
-            <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-foreground">
+              Let&apos;s Work Together
+            </h3>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
               Have a project in mind or want to collaborate? Drop me a message
-              below, and I’ll get back to you soon.
+              below, and I&apos;ll get back to you within 24 hours.
             </p>
           </div>
 
@@ -149,11 +166,14 @@ const ContactForm = () => {
                   key={field}
                   className={field === "phone" ? "md:col-span-2" : ""}
                 >
-                  <label className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     {label}
+                    {field !== "phone" && (
+                      <span className="text-red-500 ml-1">*</span>
+                    )}
                   </label>
                   <div className="relative">
-                    <Icon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Icon className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
                     <input
                       type={
                         field === "email"
@@ -167,17 +187,19 @@ const ContactForm = () => {
                       onChange={handleChange}
                       placeholder={label}
                       disabled={isSubmitting}
-                      className={`w-full pl-12 pr-4 py-3 rounded-xl border 
-                        ${errors[field]
-                          ? "border-red-500"
-                          : "border-gray-300 dark:border-gray-700"}
-                        bg-transparent focus:outline-none 
-                        focus:ring-2 focus:ring-black dark:focus:ring-white 
-                        text-base transition`}
+                      className={`w-full pl-11 pr-4 py-3 rounded-xl border bg-background
+                        ${
+                          errors[field]
+                            ? "border-red-500 focus:ring-red-500"
+                            : "border-border focus:ring-primary"
+                        }
+                        focus:outline-none focus:ring-2 text-foreground text-sm transition-all duration-200 placeholder:text-muted-foreground/60`}
                     />
                   </div>
                   {errors[field] && (
-                    <p className="text-red-500 text-xs mt-1">{errors[field]}</p>
+                    <p className="text-red-500 text-xs mt-1.5">
+                      {errors[field]}
+                    </p>
                   )}
                 </div>
               );
@@ -185,47 +207,47 @@ const ContactForm = () => {
 
             {/* Message */}
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">
-                Your Message
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Your Message <span className="text-red-500">*</span>
               </label>
               <div className="relative">
-                <MessageSquare className="absolute left-4 top-4 text-gray-400 w-5 h-5" />
+                <MessageSquare className="absolute left-4 top-4 text-muted-foreground w-4 h-4" />
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Type your message..."
-                  rows={6}
+                  placeholder="Tell me about your project..."
+                  rows={5}
                   disabled={isSubmitting}
-                  className={`w-full pl-12 pr-4 py-3 rounded-xl border 
-                    ${errors.message
-                      ? "border-red-500"
-                      : "border-gray-300 dark:border-gray-700"}
-                    bg-transparent focus:outline-none 
-                    focus:ring-2 focus:ring-black dark:focus:ring-white 
-                    text-base resize-none transition`}
+                  className={`w-full pl-11 pr-4 py-3 rounded-xl border bg-background
+                    ${
+                      errors.message
+                        ? "border-red-500 focus:ring-red-500"
+                        : "border-border focus:ring-primary"
+                    }
+                    focus:outline-none focus:ring-2 text-foreground text-sm resize-none transition-all duration-200 placeholder:text-muted-foreground/60`}
                 />
               </div>
               {errors.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.message}</p>
+                <p className="text-red-500 text-xs mt-1.5">{errors.message}</p>
               )}
             </div>
 
             {/* Button */}
-            <div className="md:col-span-2 flex justify-center mt-6">
+            <div className="md:col-span-2 flex justify-center mt-4">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex items-center gap-2 px-10 py-3 rounded-xl 
-                  bg-black text-white dark:bg-white dark:text-black
-                  font-semibold transition disabled:opacity-50
-                  hover:scale-[1.03] active:scale-[0.97]"
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed glow-btn"
               >
                 {isSubmitting ? (
-                  "Sending..."
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Sending...
+                  </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4" />
                     Send Message
                   </>
                 )}
@@ -234,11 +256,11 @@ const ContactForm = () => {
           </form>
 
           {/* Footer */}
-          <div className="mt-10 text-center text-sm text-gray-600 dark:text-gray-400">
+          <div className="mt-8 text-center text-sm text-muted-foreground">
             Prefer email? Reach me directly at{" "}
             <a
               href="mailto:chandan42kumar55@gmail.com"
-              className="underline hover:opacity-70"
+              className="text-primary hover:underline"
             >
               chandan42kumar55@gmail.com
             </a>

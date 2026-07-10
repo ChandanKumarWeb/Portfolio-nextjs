@@ -1,23 +1,28 @@
-"use- client";
-import Navbar from "./Components/Navbar";
+"use client";
+import AboutSection from "./Components/AboutSection";
+import ContactForm from "./Components/ContactForm";
+import Experience from "./Components/Experience";
+import Footer from "./Components/Footer";
 import HeroSection from "./Components/HeroSection";
-import Services from "./Components/Services";
+import Navbar from "./Components/Navbar";
 import Projects from "./Components/Projects";
+import Services from "./Components/Services";
 import SkillsSection from "./Components/Skills";
 import Testimonial from "./Components/Testimonial";
-import Footer from "./Components/Footer";
-import ContactForm from "./Components/ContactForm";
+
 export default function Home() {
   return (
-    <div>
-      <Navbar/>
+    <div className="relative">
+      <Navbar />
       <HeroSection />
+      <AboutSection />
       <Services />
       <Projects />
-      <SkillsSection/>
-      <Testimonial/>
-      <ContactForm/>
-      <Footer/>
+      <SkillsSection />
+      <Experience />
+      <Testimonial />
+      <ContactForm />
+      <Footer />
     </div>
   );
 }
