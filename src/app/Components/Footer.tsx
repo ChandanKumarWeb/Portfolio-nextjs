@@ -224,7 +224,15 @@ export default function Footer() {
             reserved.
           </p>
           <p className="mt-1">
-            Crafted with <span className="text-red-500">♥</span> in India
+            Crafted with{" "}
+            <motion.span
+              className="inline-block text-red-500 mx-1"
+              animate={{ scale: [1, 1.25, 1, 1.25, 1] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+            >
+              ♥
+            </motion.span>{" "}
+            in India
           </p>
         </motion.div>
       </div>

@@ -1,19 +1,19 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "motion/react";
-import Image from "next/image";
 import TechIconWithTooltip from "@/components/ui/TechIconWithTooltip";
 import { ExternalLink } from "lucide-react";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import Image from "next/image";
+import { useRef, useState } from "react";
 import {
-  SiNextdotjs,
-  SiTailwindcss,
-  SiFramer,
-  SiReact,
-  SiNetlify,
-  SiHtml5,
   SiBootstrap,
+  SiFramer,
+  SiHtml5,
+  SiNetlify,
+  SiNextdotjs,
+  SiReact,
   SiReactrouter,
+  SiTailwindcss,
 } from "react-icons/si";
 
 const projectData = [
@@ -24,8 +24,14 @@ const projectData = [
     desc: "Responsive website for a physiotherapy clinic, featuring services, testimonials, and contact details with modern design.",
     category: "Next.js",
     tech: [
-      { icon: <SiNextdotjs className="text-gray-900 dark:text-gray-200" />, name: "Next.js" },
-      { icon: <SiTailwindcss className="text-blue-500" />, name: "Tailwind CSS" },
+      {
+        icon: <SiNextdotjs className="text-gray-900 dark:text-gray-200" />,
+        name: "Next.js",
+      },
+      {
+        icon: <SiTailwindcss className="text-blue-500" />,
+        name: "Tailwind CSS",
+      },
       { icon: <SiFramer className="text-pink-400" />, name: "Framer Motion" },
       { icon: <SiNetlify className="text-green-500" />, name: "Netlify" },
     ],
@@ -38,8 +44,14 @@ const projectData = [
     category: "React",
     tech: [
       { icon: <SiReact className="text-cyan-400" />, name: "React" },
-      { icon: <SiReactrouter className="text-red-500" />, name: "React Router" },
-      { icon: <SiTailwindcss className="text-blue-500" />, name: "Tailwind CSS" },
+      {
+        icon: <SiReactrouter className="text-red-500" />,
+        name: "React Router",
+      },
+      {
+        icon: <SiTailwindcss className="text-blue-500" />,
+        name: "Tailwind CSS",
+      },
       { icon: <SiNetlify className="text-green-500" />, name: "Netlify" },
     ],
   },
@@ -62,8 +74,14 @@ const projectData = [
     desc: "Official website for EV brand, showcasing electric vehicle models and booking info with modern UI.",
     category: "Next.js",
     tech: [
-      { icon: <SiNextdotjs className="text-gray-900 dark:text-gray-200" />, name: "Next.js" },
-      { icon: <SiTailwindcss className="text-blue-500" />, name: "Tailwind CSS" },
+      {
+        icon: <SiNextdotjs className="text-gray-900 dark:text-gray-200" />,
+        name: "Next.js",
+      },
+      {
+        icon: <SiTailwindcss className="text-blue-500" />,
+        name: "Tailwind CSS",
+      },
       { icon: <SiFramer className="text-pink-400" />, name: "Framer Motion" },
       { icon: <SiNetlify className="text-green-500" />, name: "Netlify" },
     ],

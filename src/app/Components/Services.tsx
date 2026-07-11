@@ -1,18 +1,22 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { X, CheckCircle2, ArrowRight, Layers, Sparkles } from "lucide-react";
 import {
-  Code2,
-  Paintbrush,
-  Cloud,
-  Zap,
-  Wrench,
+  ArrowRight,
   Bug,
+  CheckCircle2,
+  Cloud,
+  Code2,
+  Layers,
+  Paintbrush,
+  Sparkles,
+  Wrench,
+  X,
+  Zap,
 } from "lucide-react";
-import { motion, useInView, AnimatePresence } from "motion/react";
-import Image from "next/image";
 import type { Variants } from "motion/react";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 export default function Services() {
   const CardData = [
@@ -29,7 +33,13 @@ export default function Services() {
         "Mobile-First Responsive & Pixel-Perfect Layouts",
         "Secure Authentication & Role-Based Access Control",
       ],
-      technologies: ["React.js", "Next.js", "Angular", "TypeScript", "Tailwind CSS"],
+      technologies: [
+        "React.js",
+        "Next.js",
+        "Angular",
+        "TypeScript",
+        "Tailwind CSS",
+      ],
       icon: <Code2 className="w-6 h-6" />,
       image: "/Images/WebDev.png",
       color: "from-blue-500 to-blue-700",
@@ -49,7 +59,12 @@ export default function Services() {
         "Comprehensive Design System & Component Library Creation",
         "Usability Testing & Conversion Rate Optimization",
       ],
-      technologies: ["Figma to Code", "Tailwind CSS", "Framer Motion", "Shadcn/UI"],
+      technologies: [
+        "Figma to Code",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Shadcn/UI",
+      ],
       icon: <Paintbrush className="w-6 h-6" />,
       image: "/Images/UiUx.png",
       color: "from-pink-500 to-purple-600",
@@ -69,12 +84,19 @@ export default function Services() {
         "Token-Based Auth (OAuth, JWT, Firebase Authentication)",
         "Real-Time WebSockets & Data Synchronization",
       ],
-      technologies: ["REST APIs", "Postman", "Axios", "TanStack React Query", "WebSockets"],
+      technologies: [
+        "REST APIs",
+        "Postman",
+        "Axios",
+        "TanStack React Query",
+        "WebSockets",
+      ],
       icon: <Cloud className="w-6 h-6" />,
       image: "/Images/ApiIntegration.png",
       color: "from-green-500 to-teal-600",
       accentColor: "text-green-500",
-      btnBg: "bg-green-500/10 hover:bg-green-500 text-green-500 hover:text-white",
+      btnBg:
+        "bg-green-500/10 hover:bg-green-500 text-green-500 hover:text-white",
     },
     {
       key: 4,
@@ -89,12 +111,18 @@ export default function Services() {
         "Efficient Global State Management (Zustand, Redux Toolkit)",
         "Image/Asset Compression & Next-Gen Caching Strategies",
       ],
-      technologies: ["Lighthouse", "Next.js Image Optimization", "Webpack / Turbopack", "Zustand"],
+      technologies: [
+        "Lighthouse",
+        "Next.js Image Optimization",
+        "Webpack / Turbopack",
+        "Zustand",
+      ],
       icon: <Zap className="w-6 h-6" />,
       image: "/Images/performance.png",
       color: "from-yellow-500 to-amber-600",
       accentColor: "text-yellow-500",
-      btnBg: "bg-yellow-500/10 hover:bg-yellow-500 text-yellow-500 hover:text-white",
+      btnBg:
+        "bg-yellow-500/10 hover:bg-yellow-500 text-yellow-500 hover:text-white",
     },
     {
       key: 5,
@@ -109,7 +137,12 @@ export default function Services() {
         "Automated Unit & End-to-End (E2E) Testing Workflows",
         "Memory Leak Detection & Rendering Profiling",
       ],
-      technologies: ["React Testing Library", "Jest", "Cypress", "Chrome DevTools"],
+      technologies: [
+        "React Testing Library",
+        "Jest",
+        "Cypress",
+        "Chrome DevTools",
+      ],
       icon: <Bug className="w-6 h-6" />,
       image: "/Images/Testing.png",
       color: "from-red-500 to-orange-600",
@@ -129,12 +162,18 @@ export default function Services() {
         "Continuous Feature Additions & UX Enhancements",
         "Fast Response Time for Technical Troubleshooting",
       ],
-      technologies: ["Git / GitHub", "CI/CD Pipelines", "Vercel / Netlify", "npm Audit"],
+      technologies: [
+        "Git / GitHub",
+        "CI/CD Pipelines",
+        "Vercel / Netlify",
+        "npm Audit",
+      ],
       icon: <Wrench className="w-6 h-6" />,
       image: "/Images/Maintenance.png",
       color: "from-indigo-500 to-blue-600",
       accentColor: "text-indigo-500",
-      btnBg: "bg-indigo-500/10 hover:bg-indigo-500 text-indigo-500 hover:text-white",
+      btnBg:
+        "bg-indigo-500/10 hover:bg-indigo-500 text-indigo-500 hover:text-white",
     },
   ];
 
@@ -241,12 +280,6 @@ export default function Services() {
                       className="object-contain"
                     />
                   </div>
-                </div>
-
-                <div
-                  className={`w-10 h-10 bg-gradient-to-br ${card.color} rounded-xl flex items-center justify-center mb-4 text-white shadow-md`}
-                >
-                  {card.icon}
                 </div>
 
                 <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
@@ -405,4 +438,3 @@ export default function Services() {
     </section>
   );
 }
-

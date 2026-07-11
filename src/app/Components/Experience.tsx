@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 const experiences = [
@@ -52,9 +52,110 @@ const experiences = [
   },
 ];
 
+function ExperienceCard({
+  exp,
+  index,
+}: {
+  exp: (typeof experiences)[number];
+  index: number;
+}) {
+  const cardRef = useRef(null);
+  const isCardInView = useInView(cardRef, { once: true, margin: "-100px" });
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, x: -30 }}
+      animate={isCardInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="relative pl-12 md:pl-20"
+    >
+      {/* Timeline dot */}
+      <div className="absolute left-4 md:left-8 top-2 -translate-x-1/2 z-10">
+        <div className="relative">
+          {exp.isCurrent ? (
+            <>
+              <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-30" />
+              <div className="w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-background" />
+            </>
+          ) : (
+            <div className="w-3.5 h-3.5 rounded-full bg-muted-foreground/40 ring-4 ring-background" />
+          )}
+        </div>
+      </div>
+
+      {/* Content Card */}
+      <div className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+          <div>
+            <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
+              <Briefcase className="w-4 h-4 text-primary" />
+              {exp.role}
+            </h3>
+            <p className="text-primary font-medium text-sm">
+              {exp.company}
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+              <Calendar className="w-3 h-3" />
+              {exp.period}
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+              <MapPin className="w-3 h-3" />
+              {exp.location}
+            </span>
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+          {exp.description}
+        </p>
+
+        {/* Achievements */}
+        <div className="space-y-2">
+          {exp.achievements.map((achievement, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={isCardInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.2 + i * 0.05 }}
+              className="flex items-start gap-2 text-sm text-muted-foreground"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+              {achievement}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Current badge */}
+        {exp.isCurrent && (
+          <div className="mt-4">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              Currently Working
+            </span>
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Experience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const timelineContainerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineContainerRef,
+    offset: ["start 70%", "end 60%"],
+  });
+
+  const scrollHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const pulseTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section
@@ -82,90 +183,32 @@ export default function Experience() {
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
+        <div className="relative" ref={timelineContainerRef}>
+          {/* Faded background vertical line */}
           <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-border" />
+
+          {/* Active colored line drawing on scroll */}
+          <motion.div
+            className="absolute left-4 md:left-8 top-0 w-px bg-primary origin-top"
+            style={{ height: scrollHeight }}
+          />
+
+          {/* Moving scroll indicator orb */}
+          <motion.div
+            className="absolute left-4 md:left-8 z-[2] -translate-x-1/2 pointer-events-none"
+            style={{
+              top: pulseTop,
+              y: "-4px",
+            }}
+          >
+            <div className="w-2.5 h-2.5 rounded-full bg-primary shadow-lg shadow-primary/80 relative">
+              <span className="absolute -inset-1 rounded-full bg-primary/40 animate-ping" />
+            </div>
+          </motion.div>
 
           <div className="space-y-10">
             {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="relative pl-12 md:pl-20"
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-4 md:left-8 top-2 -translate-x-1/2">
-                  <div className="relative">
-                    {exp.isCurrent && (
-                      <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-30" />
-                    )}
-                    <div
-                      className={`w-3 h-3 rounded-full ${
-                        exp.isCurrent ? "bg-primary" : "bg-muted-foreground/40"
-                      } ring-4 ring-background`}
-                    />
-                  </div>
-                </div>
-
-                {/* Content Card */}
-                <div className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
-                        <Briefcase className="w-4 h-4 text-primary" />
-                        {exp.role}
-                      </h3>
-                      <p className="text-primary font-medium text-sm">
-                        {exp.company}
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <Calendar className="w-3 h-3" />
-                        {exp.period}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <MapPin className="w-3 h-3" />
-                        {exp.location}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                    {exp.description}
-                  </p>
-
-                  {/* Achievements */}
-                  <div className="space-y-2">
-                    {exp.achievements.map((achievement, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.4 + index * 0.2 + i * 0.05 }}
-                        className="flex items-start gap-2 text-sm text-muted-foreground"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                        {achievement}
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Current badge */}
-                  {exp.isCurrent && (
-                    <div className="mt-4">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                        Currently Working
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
+              <ExperienceCard key={index} exp={exp} index={index} />
             ))}
           </div>
         </div>

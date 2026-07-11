@@ -1,10 +1,15 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import Image from "next/image";
-import { motion, useInView } from "motion/react";
 import { ArrowDown } from "lucide-react";
-import { FaInstagram, FaLinkedinIn, FaWhatsapp, FaGithub } from "react-icons/fa";
+import { motion, useInView } from "motion/react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import {
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const roles = [
   "Frontend Developer",
@@ -53,25 +58,29 @@ export default function HeroSection() {
       icon: <FaInstagram className="w-5 h-5" />,
       href: "https://instagram.com/iamchandankumar__",
       label: "Instagram",
-      hoverColor: "hover:text-pink-500 hover:border-pink-500/30 hover:bg-pink-500/10",
+      hoverColor:
+        "hover:text-pink-500 hover:border-pink-500/30 hover:bg-pink-500/10",
     },
     {
       icon: <FaLinkedinIn className="w-5 h-5" />,
       href: "https://linkedin.com/in/chandan-d",
       label: "LinkedIn",
-      hoverColor: "hover:text-blue-500 hover:border-blue-500/30 hover:bg-blue-500/10",
+      hoverColor:
+        "hover:text-blue-500 hover:border-blue-500/30 hover:bg-blue-500/10",
     },
     {
       icon: <FaWhatsapp className="w-5 h-5" />,
       href: "https://wa.me/8257060642",
       label: "WhatsApp",
-      hoverColor: "hover:text-green-500 hover:border-green-500/30 hover:bg-green-500/10",
+      hoverColor:
+        "hover:text-green-500 hover:border-green-500/30 hover:bg-green-500/10",
     },
     {
       icon: <FaGithub className="w-5 h-5" />,
       href: "https://github.com/ChandanKumarWeb",
       label: "GitHub",
-      hoverColor: "hover:text-foreground hover:border-foreground/30 hover:bg-foreground/10",
+      hoverColor:
+        "hover:text-foreground hover:border-foreground/30 hover:bg-foreground/10",
     },
   ];
 
@@ -105,10 +114,26 @@ export default function HeroSection() {
 
             {/* Floating tech bubbles */}
             {[
-              { label: "Next.js", pos: "top-2 left-2 md:top-8 md:left-6", delay: 0 },
-              { label: "Tailwind", pos: "top-2 right-2 md:top-8 md:right-6", delay: 0.2 },
-              { label: "React", pos: "bottom-2 left-2 md:bottom-8 md:left-6", delay: 0.4 },
-              { label: "Angular", pos: "bottom-2 right-2 md:bottom-8 md:right-6", delay: 0.6 },
+              {
+                label: "Next.js",
+                pos: "top-2 left-2 md:top-8 md:left-6",
+                delay: 0,
+              },
+              {
+                label: "Tailwind",
+                pos: "top-2 right-2 md:top-8 md:right-6",
+                delay: 0.2,
+              },
+              {
+                label: "React",
+                pos: "bottom-2 left-2 md:bottom-8 md:left-6",
+                delay: 0.4,
+              },
+              {
+                label: "Angular",
+                pos: "bottom-2 right-2 md:bottom-8 md:right-6",
+                delay: 0.6,
+              },
             ].map(({ label, pos, delay }, i) => (
               <motion.div
                 key={i}
@@ -183,8 +208,8 @@ export default function HeroSection() {
           </div>
 
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-lg">
-            Front-end developer with expertise in React, Next.js, and Angular.
-            I build responsive UIs with clean design and intuitive UX that bring
+            Front-end developer with expertise in React, Next.js, and Angular. I
+            build responsive UIs with clean design and intuitive UX that bring
             ideas to life.
           </p>
 
@@ -256,7 +281,9 @@ export default function HeroSection() {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <span className="text-xs text-muted-foreground font-medium">Scroll</span>
+        <span className="text-xs text-muted-foreground font-medium">
+          Scroll
+        </span>
         <ArrowDown className="w-4 h-4 text-muted-foreground" />
       </motion.div>
     </section>

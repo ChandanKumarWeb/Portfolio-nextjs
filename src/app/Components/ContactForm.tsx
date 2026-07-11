@@ -235,10 +235,12 @@ const ContactForm = () => {
 
             {/* Button */}
             <div className="md:col-span-2 flex justify-center mt-4">
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed glow-btn"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed glow-btn"
               >
                 {isSubmitting ? (
                   <>
@@ -251,7 +253,7 @@ const ContactForm = () => {
                     Send Message
                   </>
                 )}
-              </button>
+              </motion.button>
             </div>
           </form>
 
@@ -260,7 +262,7 @@ const ContactForm = () => {
             Prefer email? Reach me directly at{" "}
             <a
               href="mailto:chandan42kumar55@gmail.com"
-              className="text-primary hover:underline"
+              className="text-primary hover:underline transition-colors"
             >
               chandan42kumar55@gmail.com
             </a>

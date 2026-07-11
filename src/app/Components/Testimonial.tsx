@@ -66,9 +66,13 @@ export default function Testimonial() {
           <div className="w-16 h-1 bg-primary rounded-full mt-4" />
         </motion.div>
 
-        {/* Scrolling Container */}
+        {/* Scrolling Container with side fades */}
         <div
-          className="overflow-hidden"
+          className="overflow-hidden relative py-4"
+          style={{
+            maskImage: "linear-gradient(to right, transparent, white 15%, white 85%, transparent)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, white 15%, white 85%, transparent)"
+          }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -139,7 +143,7 @@ export default function Testimonial() {
 
         {/* Pause hint */}
         <p className="text-center text-xs text-muted-foreground mt-6">
-          Hover to pause • Drag to explore
+          Hover to pause
         </p>
       </div>
     </section>

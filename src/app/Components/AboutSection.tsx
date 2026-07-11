@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
+import { Briefcase, Code2, GraduationCap, Heart, MapPin } from "lucide-react";
 import { motion, useInView } from "motion/react";
-import { GraduationCap, MapPin, Briefcase, Code2, Heart } from "lucide-react";
+import { useRef } from "react";
 
 const highlights = [
   {
@@ -80,9 +80,9 @@ export default function AboutSection() {
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed">
               My journey started with curiosity about how websites work, and it
-              quickly evolved into a deep love for crafting pixel-perfect designs
-              and seamless user experiences. I&apos;ve worked with startups and
-              businesses to bring their digital visions to life.
+              quickly evolved into a deep love for crafting pixel-perfect
+              designs and seamless user experiences. I&apos;ve worked with
+              startups and businesses to bring their digital visions to life.
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed">
               When I&apos;m not coding, you&apos;ll find me exploring new
